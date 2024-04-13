@@ -19,6 +19,14 @@ func _process(delta):
 	if velocity:
 		look_at(transform.origin + direction)
 
+	# if $CleanerDetection.get_overlapping_bodies() > 0:
+	# 	for x in $CleanerDetection.$CollisionShape2D.extent
+
+	# 	pass
+
+			# print(rad_to_deg(trace_vector.angle_to(dash_vector)))
+			# print(closest.distance_to(local_position))
+
 var dash_asked = false
 
 var drift = Vector2.ZERO
@@ -38,6 +46,9 @@ const DRIFT_INITIAL_SPEED = DASH_SPEED / 3.0;
 const DASH_TIME = 0.10;
 const DASH_EXIT_TIME = 0.05;
 const DRIFTING_TIME = 0.5;
+
+const SNAP_DISTANCE = 16.0
+const SNAP_ANGLE = 15.0
 
 var dashing_time = 0.0
 var dash_exit_time = 0.0
@@ -63,7 +74,6 @@ func _physics_process(delta):
 
 		if drift_time <= 0:
 			dash_status = DashStatus.NONE
-			print("FINISHED")
 
 	# EXIT
 	if dash_status == DashStatus.DASH_EXIT:
@@ -78,7 +88,6 @@ func _physics_process(delta):
 			dash_status = DashStatus.DRIFTING
 			drift_direction = velocity.normalized()
 			drift = velocity
-			print("DRIFT")
 
 	# DASH
 	if dash_status == DashStatus.DASHING:
@@ -89,34 +98,39 @@ func _physics_process(delta):
 
 		if dashing_time <= 0:
 			dash_status = DashStatus.DASH_EXIT
-			print("EXIT")
 
 	if dash_asked:
-		print("DASH")
 		dash_asked = false
 		dash_status = DashStatus.DASHING
 		dashing_time = DASH_TIME
 		dash_exit_time = DASH_EXIT_TIME
 		drift_time = DRIFTING_TIME
 
-	# else:
-	# 	velocity *= 0.9
+	# SNAPPING
+	var snaps = get_tree().get_nodes_in_group("snapping")
 
-	# $DriftSmoke.emitting = drift_effect > 0.0
+	for snap in snaps:
+		var local_position = snap.to_local(self.position)
+		var local_nose_position = snap.to_local(self.position + 20.0 * Vector2.RIGHT.rotated(transform.get_rotation()))
 
-	# if dash_asked:
-	# 	hard_dash = DASH_DURATION
-	# 	dashing = true
-	# 	dash_asked = false
+		var closest = snap.curve.get_closest_point(local_position)
+		var nose_closest = snap.curve.get_closest_point(local_nose_position)
 
-	# if dashing:
-	# 	hard_dash -= delta
-	# 	var dir = Vector2.RIGHT.rotated(transform.get_rotation())
-	# 	velocity = dir.normalized() * dash_speed * delta
+		var distance = closest.distance_to(local_position)
 
-	# if hard_dash <= 0 and dashing:
-	# 	drift_duration = DRIFT_DURATION
-	# 	dashing = false
-	# 	drift = velocity
+		if distance < SNAP_DISTANCE:
+
+			var trace_vector = nose_closest - closest;
+			var dash_vector = local_nose_position - local_position;
+
+			var angle = trace_vector.angle_to(dash_vector)
+			var deg_angle = rad_to_deg(angle)
+
+			if abs(deg_angle) < SNAP_ANGLE:
+				velocity = velocity.rotated( - angle * 0.15)
+				direction = direction.rotated( - angle * 0.15)
+				drift = drift.rotated( - angle * 0.15)
+
+				print(angle)
 
 	move_and_slide()
