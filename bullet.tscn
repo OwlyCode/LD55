@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bexdwwrdfhpg3"]
+
+[ext_resource type="Script" path="res://levels/Bullet.gd" id="1_wyptr"]
+[ext_resource type="Texture2D" uid="uid://b2rr46gp7nhtj" path="res://assets/bullet.png" id="2_wc0s8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4i4c"]
+radius = 6.0
+
+[node name="Bullet" type="CharacterBody2D" groups=["volatile"]]
+position = Vector2(446, 382)
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_wyptr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wc0s8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w4i4c")

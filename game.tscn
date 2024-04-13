@@ -119,6 +119,7 @@ script = ExtResource("1_5damq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(424, 390)
+zoom = Vector2(1.4, 1.4)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_p33cs")
@@ -127,7 +128,7 @@ autoplay = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
-[node name="Hero" type="CharacterBody2D" parent="."]
+[node name="Hero" type="CharacterBody2D" parent="." groups=["hero"]]
 z_index = 1
 position = Vector2(209, 238)
 motion_mode = 1

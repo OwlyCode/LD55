@@ -15,6 +15,7 @@ func _ready():
 	var hero = get_node("/root/Game/Hero");
 
 	hero.position = get_node("../Spawn").position
+	hero.alive = true
 	hero.freeze()
 
 	for x in self.get_used_cells(1):
@@ -27,6 +28,11 @@ func _ready():
 		instance.tilemap = self
 
 func _process(delta):
+	var hero = get_node("/root/Game/Hero");
+
+	if !hero.alive:
+		lost = true
+
 	if !won and !lost and started:
 		time -= delta;
 
@@ -37,4 +43,5 @@ func _process(delta):
 	if get_node("/root/Game/Hero").velocity != Vector2.ZERO:
 		started = true
 
-	won = len(self.get_used_cells(1)) == 0
+	if !lost:
+		won = len(self.get_used_cells(1)) == 0

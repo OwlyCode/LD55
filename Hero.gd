@@ -19,6 +19,7 @@ var dash_asked = false
 var drift = Vector2.ZERO
 var drift_direction = Vector2.ZERO
 var direction = Vector2.ZERO
+var alive = true
 
 enum DashStatus {DASHING, DASH_EXIT, DRIFTING, NONE}
 
@@ -119,3 +120,6 @@ func _physics_process(delta):
 				drift = drift.rotated( - angle * 0.15)
 
 	move_and_slide()
+
+func hit():
+	alive = false

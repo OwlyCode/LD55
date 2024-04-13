@@ -1,8 +1,8 @@
 extends Node2D
 
 var levels = [
+	preload ("res://levels/level_02.tscn"),
 	preload ("res://levels/level_01.tscn"),
-	preload ("res://levels/level_02.tscn")
 ]
 
 var current_level = 0;
@@ -42,12 +42,16 @@ func _process(_delta):
 		get_node("/root/Game").add_child(instance)
 
 func _on_next_level_pressed():
-	current_level_instance.queue_free()
+	clear_level()
 	current_level = (current_level + 1) % len(levels)
-	victory_screen.visible = false;
-	defeat_screen.visible = false;
 
 func _on_restart_level_pressed():
+	clear_level()
+
+func clear_level():
+	for node in get_tree().get_nodes_in_group("volatile"):
+		node.queue_free()
+
 	current_level_instance.queue_free()
 	victory_screen.visible = false;
 	defeat_screen.visible = false;
