@@ -6,4 +6,4 @@ func _process(_delta):
 	if level == null:
 		return
 
-	text = "%.2f" % level.time
+	text = "%05.2f" % level.time

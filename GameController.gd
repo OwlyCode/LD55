@@ -20,13 +20,19 @@ func _ready():
 func _process(_delta):
 	if current_level_instance != null:
 		if current_level_instance.get_node("TileMap").won:
-			#level.queue_free()
-			# current_level = (current_level + 1) % len(levels)
+			if victory_screen.visible == false:
+				victory_screen.get_node("VBoxContainer").position.y = -1000.0
+				get_node("/root/Game/VictorySound").play()
+				%VictorySlide.play("slide_ui");
+
 			victory_screen.visible = true;
 			%VictoryButton.grab_focus();
 
 		elif current_level_instance.get_node("TileMap").lost:
-			#level.queue_free()
+			if defeat_screen.visible == false:
+				get_node("/root/Game/DefeatSound").play()
+				%DefeatSlide.play("ui_slide");
+
 			defeat_screen.visible = true;
 			%DefeatButton.grab_focus();
 

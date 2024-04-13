@@ -10,6 +10,9 @@ func _process(delta):
 
 	if velocity:
 		look_at(transform.origin + direction)
+		$AnimatedSprite2D.play("move")
+	else:
+		$AnimatedSprite2D.play("idle")
 
 var dash_asked = false
 

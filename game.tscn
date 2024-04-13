@@ -1,12 +1,37 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0bhst7mxaeo0"]
+[gd_scene load_steps=21 format=3 uid="uid://d0bhst7mxaeo0"]
 
 [ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
-[ext_resource type="Texture2D" uid="uid://dvc2l35t8t1uo" path="res://assets/hero.png" id="2_krm4d"]
 [ext_resource type="AudioStream" uid="uid://c8s1w4h4he2ql" path="res://assets/game_loop.mp3" id="2_p33cs"]
 [ext_resource type="Script" path="res://Hero.gd" id="3_ra3nm"]
 [ext_resource type="Script" path="res://TimeDisplay.gd" id="4_dm4ck"]
+[ext_resource type="Texture2D" uid="uid://cktul08japn6c" path="res://assets/hero/perso_principal0000.png" id="5_0ytsv"]
 [ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="6_gg3qu"]
+[ext_resource type="Texture2D" uid="uid://d335yy0w8orwg" path="res://assets/hero/perso_principal0001.png" id="6_l5nk5"]
 [ext_resource type="Texture2D" uid="uid://bgorf1ivrnuc0" path="res://assets/demon.png" id="7_0bdf2"]
+[ext_resource type="AudioStream" uid="uid://bkfl0spl1gb6c" path="res://assets/victory.wav" id="8_ebn7w"]
+[ext_resource type="AudioStream" uid="uid://bjt4fqvm5asxs" path="res://assets/defeat.wav" id="9_mg1cs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bfs25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_l5nk5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0ytsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l5nk5")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0cmyx"]
 radius = 6.0
@@ -21,8 +46,73 @@ point_count = 2
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i0eo"]
 bg_color = Color(0, 0.486275, 0.6, 0.658824)
 
+[sub_resource type="Animation" id="Animation_hibcg"]
+resource_name = "slide_ui"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Victory/VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.210224, 4.43828),
+"update": 0,
+"values": [Vector2(276, -300), Vector2(276, 251.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Victory/VBoxContainer/HFlowContainer/VictoryButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_81cgb"]
+_data = {
+"slide_ui": SubResource("Animation_hibcg")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nblo"]
 bg_color = Color(0.6, 0.0705882, 0, 0.658824)
+
+[sub_resource type="Animation" id="Animation_r1ani"]
+resource_name = "ui_slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(276, 1000), Vector2(276, 452)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%DefeatButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sia51"]
+_data = {
+"ui_slide": SubResource("Animation_r1ani")
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5damq")
@@ -33,7 +123,7 @@ zoom = Vector2(2, 2)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_p33cs")
-volume_db = -15.361
+volume_db = -30.204
 autoplay = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
@@ -44,10 +134,11 @@ position = Vector2(209, 238)
 motion_mode = 1
 script = ExtResource("3_ra3nm")
 
-[node name="Hero" type="Sprite2D" parent="Hero"]
-texture_filter = 1
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hero"]
 rotation = 1.5708
-texture = ExtResource("2_krm4d")
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_bfs25")
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hero"]
 shape = SubResource("CircleShape2D_0cmyx")
@@ -87,9 +178,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -32.5
-offset_top = -23.0
-offset_right = 32.5
+offset_left = -81.0
+offset_top = -70.0
+offset_right = 81.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.0156863, 0, 1)
@@ -97,7 +188,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("6_gg3qu")
 theme_override_font_sizes/font_size = 60
-text = "TIME: 00"
+text = "00:00"
 script = ExtResource("4_dm4ck")
 
 [node name="Victory" type="Panel" parent="UI"]
@@ -109,20 +200,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4i0eo")
 
+[node name="VictorySlide" type="AnimationPlayer" parent="UI/Victory"]
+unique_name_in_owner = true
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_81cgb")
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Victory"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -288.5
-offset_top = -37.5
-offset_right = 288.5
-offset_bottom = 37.5
+offset_left = -300.0
+offset_top = 251.5
+offset_right = 300.0
+offset_bottom = 396.5
 grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
 
 [node name="HFlowContainer2" type="HFlowContainer" parent="UI/Victory/VBoxContainer"]
 layout_mode = 2
@@ -169,6 +263,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6nblo")
 
+[node name="DefeatSlide" type="AnimationPlayer" parent="UI/Defeat"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_sia51")
+}
+
 [node name="TextureRect" type="TextureRect" parent="UI/Defeat"]
 layout_mode = 0
 offset_left = -96.0
@@ -185,12 +285,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = 128.0
+offset_top = 676.0
 offset_right = 300.0
-offset_bottom = 273.0
+offset_bottom = 821.001
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
 [node name="HFlowContainer2" type="HFlowContainer" parent="UI/Defeat/VBoxContainer"]
 layout_mode = 2
@@ -224,8 +323,15 @@ alignment = 1
 
 [node name="DefeatButton" type="Button" parent="UI/Defeat/VBoxContainer/HFlowContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Restart level"
+
+[node name="VictorySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ebn7w")
+
+[node name="DefeatSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_mg1cs")
 
 [connection signal="pressed" from="UI/Victory/VBoxContainer/HFlowContainer/VictoryButton" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="UI/Defeat/VBoxContainer/HFlowContainer/DefeatButton" to="." method="_on_restart_level_pressed"]
