@@ -26,8 +26,8 @@ var dash_status = DashStatus.NONE;
 
 var last_position = Vector2.ZERO
 
-const MOVE_SPEED = 10000 * 0.5
-const DASH_SPEED = 10000 * 2.5;
+const MOVE_SPEED = 10000 * 1.0
+const DASH_SPEED = 10000 * 4.0;
 const DRIFT_INITIAL_SPEED = DASH_SPEED / 3.0;
 
 const DASH_TIME = 0.10;
@@ -35,7 +35,7 @@ const DASH_EXIT_TIME = 0.05;
 const DRIFTING_TIME = 0.5;
 
 const SNAP_DISTANCE = 16.0
-const SNAP_ANGLE = 20.0
+const SNAP_ANGLE = 40.0
 
 var dashing_time = 0.0
 var dash_exit_time = 0.0
