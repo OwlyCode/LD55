@@ -34,7 +34,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0cmyx"]
-radius = 6.0
+radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bcqp"]
 size = Vector2(10, 32)
@@ -141,6 +141,7 @@ sprite_frames = SubResource("SpriteFrames_bfs25")
 animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hero"]
+position = Vector2(-9, 2)
 shape = SubResource("CircleShape2D_0cmyx")
 
 [node name="CleanerDetection" type="Area2D" parent="Hero"]

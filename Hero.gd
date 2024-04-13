@@ -27,7 +27,7 @@ var dash_status = DashStatus.NONE;
 
 var last_position = Vector2.ZERO
 
-const MOVE_SPEED = 10000 * 1.0
+const MOVE_SPEED = 10000 * 0.8
 const DASH_SPEED = 10000 * 4.0;
 const DRIFT_INITIAL_SPEED = DASH_SPEED / 3.0;
 
