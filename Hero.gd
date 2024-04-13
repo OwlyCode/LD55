@@ -1,14 +1,6 @@
 extends CharacterBody2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
-	# dashing = Input.is_action_pressed("dash")
-
 	if Input.is_action_just_pressed("dash"):
 		dash_asked = true
 
@@ -18,14 +10,6 @@ func _process(delta):
 
 	if velocity:
 		look_at(transform.origin + direction)
-
-	# if $CleanerDetection.get_overlapping_bodies() > 0:
-	# 	for x in $CleanerDetection.$CollisionShape2D.extent
-
-	# 	pass
-
-			# print(rad_to_deg(trace_vector.angle_to(dash_vector)))
-			# print(closest.distance_to(local_position))
 
 var dash_asked = false
 
@@ -48,11 +32,17 @@ const DASH_EXIT_TIME = 0.05;
 const DRIFTING_TIME = 0.5;
 
 const SNAP_DISTANCE = 16.0
-const SNAP_ANGLE = 15.0
+const SNAP_ANGLE = 20.0
 
 var dashing_time = 0.0
 var dash_exit_time = 0.0
 var drift_time = 0.0
+
+func freeze():
+	velocity = Vector2.ZERO
+	drift = Vector2.ZERO
+	direction = Vector2.ZERO
+	dash_status = DashStatus.NONE
 
 func _physics_process(delta):
 
@@ -125,7 +115,5 @@ func _physics_process(delta):
 				velocity = velocity.rotated( - angle * 0.15)
 				direction = direction.rotated( - angle * 0.15)
 				drift = drift.rotated( - angle * 0.15)
-
-				print(angle)
 
 	move_and_slide()

@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0bhst7mxaeo0"]
+[gd_scene load_steps=12 format=3 uid="uid://d0bhst7mxaeo0"]
 
-[ext_resource type="Texture2D" uid="uid://bcvsxd8y5ntas" path="res://assets/tileset.png" id="1_d2ske"]
-[ext_resource type="Script" path="res://Level.gd" id="2_ea7g3"]
+[ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
 [ext_resource type="Texture2D" uid="uid://dvc2l35t8t1uo" path="res://assets/hero.png" id="2_krm4d"]
 [ext_resource type="AudioStream" uid="uid://bliamn7ens85b" path="res://assets/beat.mp3" id="3_eno22"]
 [ext_resource type="Script" path="res://Hero.gd" id="3_ra3nm"]
 [ext_resource type="Script" path="res://TimeDisplay.gd" id="4_dm4ck"]
+[ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="6_gg3qu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0cmyx"]
 radius = 6.0
@@ -17,56 +17,14 @@ size = Vector2(6, 18)
 _data = [Vector2(0.119298, 0.287821), 0.0, 1.97023, 0, 0, Vector2(1, 0.983565), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kyt66"]
-texture = ExtResource("1_d2ske")
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_1/angular_velocity = 0.0
-1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_1/angular_velocity = 0.0
-2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_1/angular_velocity = 0.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i0eo"]
+bg_color = Color(0, 0.6, 0.0196078, 0.658824)
 
-[sub_resource type="TileSet" id="TileSet_6nk0f"]
-physics_layer_0/collision_layer = 1
-physics_layer_1/collision_layer = 2
-physics_layer_1/collision_mask = 2
-sources/0 = SubResource("TileSetAtlasSource_kyt66")
-
-[sub_resource type="Curve2D" id="Curve2D_nhtj3"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 217, 265, 0, 0, 0, 0, 280, 200)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_463ii"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 277.213, 184.267, 0, 0, 0, 0, 229.553, 123.6)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_17e2o"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 170.723, 198.267, 0, 0, 0, 0, 217.638, 258)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_v5f50"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 219.128, 123.6, 0, 0, 0, 0, 170.723, 184.267)
-}
-point_count = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nblo"]
+bg_color = Color(0.6, 0.0705882, 0, 0.658824)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_5damq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(210, 191)
@@ -78,29 +36,29 @@ autoplay = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Hero" type="CharacterBody2D" parent="."]
 z_index = 1
 position = Vector2(209, 238)
 motion_mode = 1
 script = ExtResource("3_ra3nm")
 
-[node name="Hero" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Hero" type="Sprite2D" parent="Hero"]
 texture_filter = 1
 rotation = 1.5708
 texture = ExtResource("2_krm4d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero"]
 shape = SubResource("CircleShape2D_0cmyx")
 
-[node name="CleanerDetection" type="Area2D" parent="CharacterBody2D"]
+[node name="CleanerDetection" type="Area2D" parent="Hero"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/CleanerDetection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero/CleanerDetection"]
 position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_8bcqp")
 
-[node name="DriftSmoke" type="CPUParticles2D" parent="CharacterBody2D"]
+[node name="DriftSmoke" type="CPUParticles2D" parent="Hero"]
 emitting = false
 amount = 16
 gravity = Vector2(0, -20)
@@ -108,7 +66,7 @@ scale_amount_min = 4.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_dygca")
 
-[node name="DashParticles" type="CPUParticles2D" parent="CharacterBody2D"]
+[node name="DashParticles" type="CPUParticles2D" parent="Hero"]
 rotation = -3.11911
 emitting = false
 amount = 20
@@ -139,32 +97,118 @@ theme_override_font_sizes/font_size = 30
 text = "TIME: 00"
 script = ExtResource("4_dm4ck")
 
-[node name="Level" type="Node2D" parent="."]
+[node name="Victory" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4i0eo")
 
-[node name="TileMap" type="TileMap" parent="Level"]
-texture_filter = 1
-tile_set = SubResource("TileSet_6nk0f")
-format = 2
-layer_0/name = "Ground"
-layer_0/tile_data = PackedInt32Array(327686, 65536, 0, 393223, 0, 0, 393224, 0, 0, 458760, 0, 0, 393222, 65536, 0, 458758, 65536, 0, 524294, 65536, 0, 589830, 65536, 0, 655366, 65536, 0, 720902, 65536, 0, 786438, 65536, 0, 851974, 65536, 0, 917510, 65536, 0, 983046, 65536, 0, 1048582, 65536, 0, 1114118, 65536, 0, 1179654, 65536, 0, 327687, 65536, 0, 458759, 0, 0, 524295, 0, 0, 589831, 0, 0, 655367, 0, 0, 720903, 0, 0, 786439, 0, 0, 851975, 0, 0, 917511, 0, 0, 983047, 0, 0, 1048583, 0, 0, 1114119, 0, 0, 1179655, 65536, 0, 327688, 65536, 0, 524296, 0, 0, 589832, 0, 0, 720904, 0, 0, 786440, 0, 0, 851976, 0, 0, 917512, 0, 0, 983048, 0, 0, 1048584, 0, 0, 1114120, 0, 0, 1179656, 65536, 0, 327689, 65536, 0, 393225, 0, 0, 458761, 0, 0, 524297, 0, 0, 589833, 0, 0, 655369, 0, 0, 720905, 0, 0, 786441, 0, 0, 851977, 0, 0, 917513, 0, 0, 983049, 0, 0, 1048585, 0, 0, 1114121, 0, 0, 1179657, 65536, 0, 327690, 65536, 0, 393226, 0, 0, 458762, 0, 0, 524298, 0, 0, 589834, 0, 0, 655370, 0, 0, 720906, 0, 0, 786442, 0, 0, 851978, 0, 0, 917514, 0, 0, 983050, 0, 0, 1048586, 0, 0, 1114122, 0, 0, 1179658, 65536, 0, 327691, 65536, 0, 393227, 0, 0, 458763, 0, 0, 524299, 0, 0, 589835, 0, 0, 655371, 0, 0, 720907, 65536, 0, 786443, 65536, 0, 851979, 0, 0, 917515, 0, 0, 983051, 0, 0, 1048587, 0, 0, 1114123, 0, 0, 1179659, 65536, 0, 327692, 65536, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 0, 589836, 0, 0, 655372, 65536, 0, 720908, 65536, 0, 786444, 65536, 0, 851980, 65536, 0, 917516, 0, 0, 983052, 0, 0, 1048588, 0, 0, 1114124, 0, 0, 1179660, 65536, 0, 327693, 65536, 0, 393229, 0, 0, 458765, 0, 0, 524301, 0, 0, 589837, 0, 0, 655373, 65536, 0, 720909, 65536, 0, 786445, 65536, 0, 851981, 65536, 0, 917517, 0, 0, 983053, 0, 0, 1048589, 0, 0, 1114125, 0, 0, 1179661, 65536, 0, 327694, 65536, 0, 393230, 0, 0, 458766, 0, 0, 524302, 0, 0, 589838, 0, 0, 655374, 0, 0, 720910, 65536, 0, 786446, 65536, 0, 851982, 0, 0, 917518, 0, 0, 983054, 0, 0, 1048590, 0, 0, 1114126, 0, 0, 1179662, 65536, 0, 327695, 65536, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983055, 0, 0, 1048591, 0, 0, 1114127, 0, 0, 1179663, 65536, 0, 327696, 65536, 0, 393232, 0, 0, 458768, 0, 0, 524304, 0, 0, 589840, 0, 0, 655376, 0, 0, 720912, 0, 0, 786448, 0, 0, 851984, 0, 0, 917520, 0, 0, 983056, 0, 0, 1048592, 0, 0, 1114128, 0, 0, 1179664, 65536, 0, 327697, 65536, 0, 393233, 0, 0, 458769, 0, 0, 524305, 0, 0, 589841, 0, 0, 655377, 0, 0, 720913, 0, 0, 786449, 0, 0, 851985, 0, 0, 917521, 0, 0, 983057, 0, 0, 1048593, 0, 0, 1114129, 0, 0, 1179665, 65536, 0, 327698, 65536, 0, 393234, 0, 0, 458770, 0, 0, 524306, 0, 0, 589842, 0, 0, 655378, 0, 0, 720914, 0, 0, 786450, 0, 0, 851986, 0, 0, 917522, 0, 0, 983058, 0, 0, 1048594, 0, 0, 1114130, 0, 0, 1179666, 65536, 0, 327699, 65536, 0, 393235, 65536, 0, 458771, 65536, 0, 524307, 65536, 0, 589843, 65536, 0, 655379, 65536, 0, 720915, 65536, 0, 786451, 65536, 0, 851987, 65536, 0, 917523, 65536, 0, 983059, 65536, 0, 1048595, 65536, 0, 1114131, 65536, 0, 1179667, 65536, 0, 655368, 0, 0)
-layer_1/name = "Paint"
-layer_1/tile_data = PackedInt32Array(1048589, 131072, 0, 1048588, 131072, 0, 983051, 131072, 0, 917514, 131072, 0, 851977, 131072, 0, 786440, 131072, 0, 720904, 131072, 0, 655369, 131072, 0, 589834, 131072, 0, 524299, 131072, 0, 458764, 131072, 0, 458765, 131072, 0, 524302, 131072, 0, 589839, 131072, 0, 655376, 131072, 0, 720913, 131072, 0, 786449, 131072, 0, 851984, 131072, 0, 917519, 131072, 0, 983054, 131072, 0)
-script = ExtResource("2_ea7g3")
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Victory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.5
+offset_top = -37.5
+offset_right = 288.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="Path2D" type="Path2D" parent="Level" groups=["snapping"]]
-curve = SubResource("Curve2D_nhtj3")
+[node name="HFlowContainer2" type="HFlowContainer" parent="CanvasLayer/Victory/VBoxContainer"]
+layout_mode = 2
+alignment = 1
 
-[node name="Path2D2" type="Path2D" parent="Level" groups=["snapping"]]
-position = Vector2(-93.2571, -12.4286)
-scale = Vector2(1.34286, 1.07143)
-curve = SubResource("Curve2D_463ii")
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Victory/VBoxContainer/HFlowContainer2"]
+custom_minimum_size = Vector2(600, 70)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 1, 0.0470588, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("6_gg3qu")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center][wave]DEMON SEALED[/wave][/center]
+"
 
-[node name="Path2D3" type="Path2D" parent="Level" groups=["snapping"]]
-position = Vector2(-93.2571, -12.4286)
-scale = Vector2(1.34286, 1.07143)
-curve = SubResource("Curve2D_17e2o")
+[node name="HFlowContainer3" type="HFlowContainer" parent="CanvasLayer/Victory/VBoxContainer"]
+layout_mode = 2
+alignment = 1
 
-[node name="Path2D4" type="Path2D" parent="Level" groups=["snapping"]]
-position = Vector2(-93.2571, -12.4286)
-scale = Vector2(1.34286, 1.07143)
-curve = SubResource("Curve2D_v5f50")
+[node name="Label" type="Label" parent="CanvasLayer/Victory/VBoxContainer/HFlowContainer3"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 26
+text = "See you in a thousand years, looser!"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/Victory/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Victory/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="Defeat" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6nblo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Defeat"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.5
+offset_top = -37.5
+offset_right = 288.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HFlowContainer2" type="HFlowContainer" parent="CanvasLayer/Defeat/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Defeat/VBoxContainer/HFlowContainer2"]
+custom_minimum_size = Vector2(600, 70)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0, 0.054902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("6_gg3qu")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center][wave]DEMON RELEASED[/wave][/center]
+"
+
+[node name="HFlowContainer3" type="HFlowContainer" parent="CanvasLayer/Defeat/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Defeat/VBoxContainer/HFlowContainer3"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 26
+text = "Meh. Global warming had doomed us already."
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/Defeat/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Defeat/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "Restart level"

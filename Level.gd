@@ -2,11 +2,21 @@ extends TileMap
 
 var detector = preload ("res://detector.tscn")
 
-var time = 20.0;
-var won = false
+@export var level_time = 20.0
 
-# Called when the node enters the scene tree for the first time.
+var time = 0.0;
+var won = false
+var lost = false
+var started = false;
+
 func _ready():
+	time = level_time
+
+	var hero = get_node("/root/Game/Hero");
+
+	hero.position = get_node("../Spawn").position
+	hero.freeze()
+
 	for x in self.get_used_cells(1):
 
 		var coords = map_to_local(x)
@@ -16,9 +26,15 @@ func _ready():
 		instance.position = coords
 		instance.tilemap = self
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !won:
+	if !won and !lost and started:
 		time -= delta;
+
+	if time < 0:
+		lost = true
+		time = 0.0
+
+	if get_node("/root/Game/Hero").velocity != Vector2.ZERO:
+		started = true
 
 	won = len(self.get_used_cells(1)) == 0
