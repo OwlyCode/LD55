@@ -61,11 +61,6 @@ func _physics_process(delta):
 
 		velocity = (direction * MOVE_SPEED) * delta + drift
 
-		#drift_effect = lerpf(0.0, 1.0, clampf(drift_duration / DRIFT_DURATION, 0.0, 1.0))
-		#drift_duration -= delta
-
-		# drift *= drift_effect
-
 	# DRIFT
 	if dash_status == DashStatus.DRIFTING:
 		drift_time -= delta

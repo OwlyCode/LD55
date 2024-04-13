@@ -2,6 +2,9 @@ extends TileMap
 
 var detector = preload ("res://detector.tscn")
 
+var time = 20.0;
+var won = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for x in self.get_used_cells(1):
@@ -15,4 +18,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if !won:
+		time -= delta;
+
+	won = len(self.get_used_cells(1)) == 0
