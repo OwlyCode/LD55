@@ -45,7 +45,6 @@ func freeze():
 	dash_status = DashStatus.NONE
 
 func _physics_process(delta):
-
 	if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
 		direction = Input.get_vector("left", "right", "up", "down")
 

@@ -23,10 +23,12 @@ func _process(_delta):
 			#level.queue_free()
 			# current_level = (current_level + 1) % len(levels)
 			victory_screen.visible = true;
+			%VictoryButton.grab_focus();
 
 		elif current_level_instance.get_node("TileMap").lost:
 			#level.queue_free()
 			defeat_screen.visible = true;
+			%DefeatButton.grab_focus();
 
 	if current_level_instance == null:
 		var instance = levels[current_level].instantiate()
