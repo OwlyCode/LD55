@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 func _process(delta):
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash")&&dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
 		dash_asked = true
 
 	$DriftSmoke.emitting = dash_status == DashStatus.DRIFTING and (last_position.distance_to(position) > 5.0 * delta)
