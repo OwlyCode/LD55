@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d335yy0w8orwg" path="res://assets/hero/perso_principal0001.png" id="6_l5nk5"]
 [ext_resource type="Texture2D" uid="uid://bgorf1ivrnuc0" path="res://assets/demon.png" id="7_0bdf2"]
 [ext_resource type="AudioStream" uid="uid://3g7b283fypot" path="res://assets/DASH_impact_ogg.ogg" id="7_55k2h"]
-[ext_resource type="AudioStream" uid="uid://r8b30rib0ttp" path="res://assets/Dash_slide_long_2_ogg.ogg" id="8_8vccl"]
+[ext_resource type="AudioStream" uid="uid://dnlecxqyeq7t4" path="res://assets/Dash_slide_long_3_ogg.ogg" id="8_1ar2f"]
 [ext_resource type="AudioStream" uid="uid://bkfl0spl1gb6c" path="res://assets/victory.wav" id="8_ebn7w"]
 [ext_resource type="AudioStream" uid="uid://bjt4fqvm5asxs" path="res://assets/defeat.wav" id="9_mg1cs"]
 [ext_resource type="AudioStream" uid="uid://ifqrrkyvgh1" path="res://assets/Dash_OUT_2_ogg.ogg" id="9_pt2x3"]
@@ -91,6 +91,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_fjtin"]
 resource_name = "idle"
+length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -293,7 +294,7 @@ shape = SubResource("RectangleShape2D_8bcqp")
 stream = ExtResource("7_55k2h")
 
 [node name="DashSlide" type="AudioStreamPlayer" parent="Hero"]
-stream = ExtResource("8_8vccl")
+stream = ExtResource("8_1ar2f")
 volume_db = -3.0
 
 [node name="DashOut" type="AudioStreamPlayer" parent="Hero"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4ruqcmxjwk0"]
+
+[ext_resource type="TileSet" uid="uid://cfelju4kn08np" path="res://tileset.tres" id="1_phskx"]
+[ext_resource type="Script" path="res://Level.gd" id="2_7xyj6"]
+[ext_resource type="PackedScene" uid="uid://cidu0qtuo1kfa" path="res://portal_in.tscn" id="3_y2jfa"]
+[ext_resource type="PackedScene" uid="uid://rtcqmoq4q7wd" path="res://portal_out.tscn" id="4_gr2rs"]
+
+[node name="Level" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+tile_set = ExtResource("1_phskx")
+rendering_quadrant_size = 32
+format = 2
+layer_0/name = "Ground"
+layer_0/tile_data = PackedInt32Array(327686, 393218, 1, 458760, 458754, 3, 393222, 393218, 1, 458758, 393218, 1, 524294, 393218, 1, 589830, 393218, 1, 655366, 393218, 1, 720902, 393218, 1, 786438, 393218, 1, 327687, 393218, 1, 458759, 458754, 3, 524295, 393218, 3, 589831, 393218, 3, 327688, 393218, 1, 524296, 458754, 3, 589832, 393218, 3, 327689, 393218, 1, 983049, 393218, 1, 1048585, 393218, 1, 1114121, 393218, 1, 1179657, 393218, 1, 327690, 393218, 1, 983050, 393218, 3, 1048586, 393218, 3, 1114122, 393218, 3, 1179658, 393218, 1, 327691, 393218, 1, 983051, 393218, 3, 1048587, 393218, 3, 1114123, 393218, 3, 1179659, 393218, 1, 327692, 393218, 1, 983052, 393218, 3, 1048588, 393218, 3, 1114124, 393218, 3, 1179660, 393218, 1, 327693, 393218, 1, 983053, 393218, 3, 1048589, 393218, 3, 1114125, 393218, 3, 1179661, 393218, 1, 327694, 393218, 1, 983054, 393218, 3, 1048590, 393218, 3, 1114126, 393218, 3, 1179662, 393218, 1, 327695, 393218, 1, 983055, 393218, 1, 1048591, 393218, 1, 1114127, 393218, 1, 1179663, 393218, 1, 327696, 393218, 1, 458768, 458754, 3, 524304, 458754, 3, 589840, 393218, 3, 327697, 393218, 1, 458769, 458754, 3, 524305, 393218, 3, 589841, 393218, 3, 327698, 393218, 1, 458770, 393218, 1, 524306, 393218, 1, 589842, 393218, 1, 589833, 458754, 3, 524297, 393218, 3, 458761, 458754, 3, 786444, 393218, 3, 917512, 393218, 1, 917513, 393218, 1, 917514, 393218, 1, 917515, 393218, 1, 917516, 393218, 1, 917517, 393218, 1, 917518, 393218, 1, 917519, 393218, 1, 917520, 393218, 1, 786450, 393218, 1, 720914, 393218, 1, 655378, 393218, 1, 393234, 393218, 1, 589839, 458754, 3, 524303, 393218, 3, 458767, 458754, 3, 851975, 393218, 1, 851985, 393218, 1)
+layer_1/name = "Paint"
+layer_1/tile_data = PackedInt32Array(524296, 393218, 6, 458760, 393218, 7, 458769, 589826, 7, 458761, 458754, 7, 458759, 458754, 6, 458768, 524290, 6, 589833, 393218, 6, 458767, 589826, 6, 524304, 458754, 6, 589839, 524290, 6)
+script = ExtResource("2_7xyj6")
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(402, 561)
+
+[node name="PortalIn" parent="." node_paths=PackedStringArray("out") instance=ExtResource("3_y2jfa")]
+position = Vector2(400, 497)
+out = NodePath("../PortalOut")
+
+[node name="PortalOut" parent="." instance=ExtResource("4_gr2rs")]
+position = Vector2(400, 402)
+
+[node name="PortalIn2" parent="." node_paths=PackedStringArray("out") instance=ExtResource("3_y2jfa")]
+position = Vector2(240, 304)
+out = NodePath("../PortalOut2")
+
+[node name="PortalIn3" parent="." node_paths=PackedStringArray("out") instance=ExtResource("3_y2jfa")]
+position = Vector2(560, 304)
+out = NodePath("../PortalOut2")
+
+[node name="PortalOut2" parent="." instance=ExtResource("4_gr2rs")]
+position = Vector2(401, 561)

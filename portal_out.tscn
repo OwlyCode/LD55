@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rtcqmoq4q7wd"]
+
+[ext_resource type="Texture2D" uid="uid://ceyjxak5uintl" path="res://assets/portal_out.png" id="1_mtwpu"]
+
+[node name="PortalOut" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mtwpu")

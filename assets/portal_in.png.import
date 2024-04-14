@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6il23w3bpjpx"
-path="res://.godot/imported/cultist.png-cb58bd850b598ce41bdc7f6fa29845e4.ctex"
+uid="uid://dk8r8fdibtwgs"
+path="res://.godot/imported/portal_in.png-34ff44ba5f51c6923f73da2e42720108.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cultist.png"
-dest_files=["res://.godot/imported/cultist.png-cb58bd850b598ce41bdc7f6fa29845e4.ctex"]
+source_file="res://assets/portal_in.png"
+dest_files=["res://.godot/imported/portal_in.png-34ff44ba5f51c6923f73da2e42720108.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

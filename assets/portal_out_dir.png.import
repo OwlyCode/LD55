@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8u3m2oq7vild"
-path="res://.godot/imported/zckve883.bmp-48c0135009976b4eb8521c18f3a9987d.ctex"
+uid="uid://bqvc4qv54s8m5"
+path="res://.godot/imported/portal_out_dir.png-7dbff8620f29c734815137bb0af53edb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/zckve883.bmp"
-dest_files=["res://.godot/imported/zckve883.bmp-48c0135009976b4eb8521c18f3a9987d.ctex"]
+source_file="res://assets/portal_out_dir.png"
+dest_files=["res://.godot/imported/portal_out_dir.png-7dbff8620f29c734815137bb0af53edb.ctex"]
 
 [params]
 

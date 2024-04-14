@@ -40,7 +40,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.play("idle")
 
-	if iframe == 0 and !$Grounded.has_overlapping_bodies():
+	if iframe == 0 and !$Grounded.has_overlapping_bodies() and dash_status in [DashStatus.NONE, DashStatus.DRIFTING]:
 		alive = false
 		death_reason = "fall"
 
