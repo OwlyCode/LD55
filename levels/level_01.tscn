@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://drbhtomdvhjvw"]
+[gd_scene load_steps=8 format=3 uid="uid://drbhtomdvhjvw"]
 
 [ext_resource type="TileSet" uid="uid://cfelju4kn08np" path="res://tileset.tres" id="1_lhtgg"]
 [ext_resource type="Script" path="res://Level.gd" id="2_onqvo"]
@@ -24,6 +24,12 @@ point_count = 2
 [sub_resource type="Curve2D" id="Curve2D_v7wor"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 520.787, -29.1783, 0, 0, 0, 0, 275.588, -26.8091)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_edyy6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 617.941, 503.897, 0, 0, 0, 0, 158.386, 503.897)
 }
 point_count = 2
 
@@ -62,3 +68,8 @@ curve = SubResource("Curve2D_ywfbq")
 position = Vector2(161.294, 316.316)
 scale = Vector2(0.648453, 0.422079)
 curve = SubResource("Curve2D_v7wor")
+
+[node name="Path2D8" type="Path2D" parent="." groups=["snapping"]]
+position = Vector2(161.294, 316.316)
+scale = Vector2(0.648453, 0.422079)
+curve = SubResource("Curve2D_edyy6")

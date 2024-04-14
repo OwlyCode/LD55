@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmo7ey5hfwp2w"]
+
+[ext_resource type="Texture2D" uid="uid://djeciolim5g1e" path="res://assets/hero/shade.png" id="2_61uoy"]
+[ext_resource type="Script" path="res://Shadow.gd" id="2_jsrwf"]
+
+[node name="Shadow" type="Node2D"]
+z_index = 2
+position = Vector2(276, 390)
+scale = Vector2(0.1, 0.1)
+script = ExtResource("2_jsrwf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+rotation = 1.5708
+texture = ExtResource("2_61uoy")

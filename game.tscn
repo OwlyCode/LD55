@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d0bhst7mxaeo0"]
+[gd_scene load_steps=22 format=3 uid="uid://d0bhst7mxaeo0"]
 
 [ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
 [ext_resource type="AudioStream" uid="uid://c8s1w4h4he2ql" path="res://assets/game_loop.mp3" id="2_p33cs"]
@@ -33,8 +33,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0cmyx"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c71xf"]
+height = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bcqp"]
 size = Vector2(10, 32)
@@ -42,6 +42,10 @@ size = Vector2(10, 32)
 [sub_resource type="Curve" id="Curve_dygca"]
 _data = [Vector2(0.119298, 0.287821), 0.0, 1.97023, 0, 0, Vector2(1, 0.983565), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cr6px"]
+offsets = PackedFloat32Array(0, 0.768889, 1)
+colors = PackedColorArray(0.390625, 0.375296, 0.34582, 1, 0.229167, 0.229167, 0.229167, 1, 0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i0eo"]
 bg_color = Color(0, 0.486275, 0.6, 0.658824)
@@ -129,9 +133,10 @@ autoplay = true
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
 [node name="Hero" type="CharacterBody2D" parent="." groups=["hero"]]
-z_index = 1
+z_index = 5
 position = Vector2(209, 238)
 motion_mode = 1
+safe_margin = 1.0
 script = ExtResource("3_ra3nm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hero"]
@@ -141,8 +146,8 @@ sprite_frames = SubResource("SpriteFrames_bfs25")
 animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hero"]
-position = Vector2(-9, 2)
-shape = SubResource("CircleShape2D_0cmyx")
+position = Vector2(-10, 0)
+shape = SubResource("CapsuleShape2D_c71xf")
 
 [node name="CleanerDetection" type="Area2D" parent="Hero"]
 collision_layer = 2
@@ -160,16 +165,21 @@ scale_amount_min = 4.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_dygca")
 
-[node name="DashParticles" type="CPUParticles2D" parent="Hero"]
-rotation = -3.11911
-emitting = false
-amount = 20
-emission_shape = 3
-emission_rect_extents = Vector2(1, 10)
-spread = 12.16
+[node name="DashParticles2" type="CPUParticles2D" parent="Hero"]
+visible = false
+position = Vector2(-19, 0)
+amount = 3
+lifetime = 0.3
+randomness = 1.0
+texture = ExtResource("5_0ytsv")
+spread = 0.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
+angle_min = -90.0
+angle_max = -90.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color = Color(1, 0.839216, 0.6, 1)
+color_ramp = SubResource("Gradient_cr6px")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

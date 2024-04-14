@@ -1,15 +1,33 @@
 extends CharacterBody2D
 
+var Shadow = preload ("res://Shadow.tscn")
+
+const SHADOW_DELAY = 0.05
+
+var shadow_delay_current = SHADOW_DELAY;
+
 func _process(delta):
 	if Input.is_action_just_pressed("dash")&&dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
 		dash_asked = true
 
-	$DriftSmoke.emitting = dash_status == DashStatus.DRIFTING and (last_position.distance_to(position) > 5.0 * delta)
+	# $DriftSmoke.emitting = dash_status == DashStatus.DRIFTING and (last_position.distance_to(position) > 5.0 * delta)
+
+	shadow_delay_current -= delta
+
+	if dash_status in [DashStatus.DASHING, DashStatus.DASH_EXIT, DashStatus.DRIFTING] and (last_position.distance_to(position) > 5.0 * delta):
+		if shadow_delay_current < 0:
+			shadow_delay_current = SHADOW_DELAY
+			var shadow = Shadow.instantiate()
+			shadow.rotation = rotation
+			shadow.position = position
+			get_node("/root/Game").add_child(shadow)
+
+	#$DashParticles.process_material.set_shader_parameter("emission_angle", rotation_degrees)
 
 	last_position = position
 
 	if velocity:
-		look_at(transform.origin + direction)
+		look_at(transform.origin + velocity)
 		$AnimatedSprite2D.play("move")
 	else:
 		$AnimatedSprite2D.play("idle")
@@ -27,16 +45,16 @@ var dash_status = DashStatus.NONE;
 
 var last_position = Vector2.ZERO
 
-const MOVE_SPEED = 10000 * 0.8
-const DASH_SPEED = 10000 * 4.0;
+const MOVE_SPEED = 10000 * 1.6
+const DASH_SPEED = 10000 * 6.0;
 const DRIFT_INITIAL_SPEED = DASH_SPEED / 3.0;
 
-const DASH_TIME = 0.10;
+const DASH_TIME = 0.1;
 const DASH_EXIT_TIME = 0.05;
-const DRIFTING_TIME = 0.5;
+const DRIFTING_TIME = 0.25;
 
-const SNAP_DISTANCE = 16.0
-const SNAP_ANGLE = 40.0
+const SNAP_DISTANCE = 32.0
+const SNAP_ANGLE = 20.0
 
 var dashing_time = 0.0
 var dash_exit_time = 0.0
@@ -115,9 +133,10 @@ func _physics_process(delta):
 			var deg_angle = rad_to_deg(angle)
 
 			if abs(deg_angle) < SNAP_ANGLE:
-				velocity = velocity.rotated( - angle * 0.15)
-				direction = direction.rotated( - angle * 0.15)
-				drift = drift.rotated( - angle * 0.15)
+				velocity = velocity.rotated( - angle * 0.1)
+				direction = direction.rotated( - angle * 0.1)
+				drift = drift.rotated( - angle * 0.1)
+				print(["SNAP", deg_angle, direction])
 
 	move_and_slide()
 
