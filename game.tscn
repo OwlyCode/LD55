@@ -261,8 +261,6 @@ autoplay = true
 [node name="Hero" type="CharacterBody2D" parent="." groups=["hero"]]
 z_index = 5
 position = Vector2(10, 0)
-rotation = 12.5664
-scale = Vector2(1e-05, 1e-05)
 motion_mode = 1
 wall_min_slide_angle = 1.5708
 safe_margin = 1.0

@@ -28,8 +28,11 @@ func _process(_delta):
 		if tilemap.won:
 			if victory_screen.visible == false:
 				trigger_victory()
+			%VictoryButton.grab_focus();
 
 		elif tilemap.lost:
+			%DefeatButton.grab_focus();
+
 			if defeat_triggered == false:
 				defeat_triggered = true
 				if tilemap.lost_reason == "time_out":
