@@ -19,6 +19,7 @@ func _ready():
 	hero.position = get_node("../Spawn").position
 	hero.alive = true
 	hero.iframe = 10
+	hero.won = false
 	hero.freeze()
 
 	for x in self.get_used_cells(1):
@@ -48,5 +49,10 @@ func _process(delta):
 	if get_node("/root/Game/Hero").velocity != Vector2.ZERO:
 		started = true
 
+	var was_won = won
+
 	if !lost:
 		won = len(self.get_used_cells(1)) == 0
+
+	if won and !was_won:
+		get_node("/root/Game/Hero").win()

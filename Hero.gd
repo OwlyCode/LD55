@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var Shadow = preload ("res://shadow.tscn")
 var Puffle = preload ("res://puffle.tscn")
+var Accumulator = preload ("res://accumulation.tscn")
 
 const SHADOW_DELAY = 0.05
 
@@ -37,7 +38,7 @@ var dash_exit_time = 0.0
 var drift_time = 0.0
 
 func _process(delta):
-	if Input.is_action_pressed("dash") and alive:
+	if Input.is_action_pressed("dash") and alive and !won:
 		dash_asked = true
 		get_tree().call_group("camera", "camera_shake", 2.0, 2)
 
@@ -84,12 +85,13 @@ func freeze():
 	dash_status = DashStatus.NONE
 
 func _physics_process(delta):
-	if !alive:
+	if !alive or won:
 		velocity = Vector2.ZERO
 		direction = Vector2.ZERO
 		drift = Vector2.ZERO
+		dash_status = DashStatus.NONE
 
-	if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT] and alive:
+	if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT] and alive and !won:
 		direction = Input.get_vector("left", "right", "up", "down")
 		velocity = (direction * MOVE_SPEED) * delta + drift
 
@@ -177,3 +179,12 @@ func hit():
 		alive = false
 
 	return was_alive
+
+var won = false
+
+func win():
+	freeze()
+	won = true
+	var acc = Accumulator.instantiate()
+	acc.position = position
+	get_tree().root.add_child(acc)

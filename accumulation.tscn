@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://blynnad8io5er"]
+[gd_scene load_steps=9 format=3 uid="uid://blynnad8io5er"]
 
+[ext_resource type="Script" path="res://accumulation.gd" id="1_f6by4"]
 [ext_resource type="Texture2D" uid="uid://c7jgrbbnkoqpq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="1_gnc5j"]
+[ext_resource type="AudioStream" uid="uid://cx43qewdl3h7d" path="res://Victoire_TP.ogg" id="3_bsh5d"]
 
 [sub_resource type="Curve" id="Curve_ani1j"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.547368, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.512432), 0.0, 0.0, 0, 0]
@@ -16,9 +18,14 @@ colors = PackedColorArray(0.40247, 0.854184, 1, 1)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w8orj"]
 blend_mode = 1
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1su82"]
+blend_mode = 1
+
 [node name="Accumulation" type="Node2D"]
+script = ExtResource("1_f6by4")
 
 [node name="Particles" type="CPUParticles2D" parent="."]
+z_index = 1
 amount = 64
 emission_shape = 2
 emission_sphere_radius = 50.0
@@ -37,5 +44,16 @@ color_initial_ramp = SubResource("Gradient_5h20p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.054902, 0.576471, 1, 0.0980392)
+z_index = 1
 material = SubResource("CanvasItemMaterial_w8orj")
+texture = ExtResource("1_gnc5j")
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bsh5d")
+
+[node name="Flash" type="Sprite2D" parent="."]
+self_modulate = Color(0.360784, 0.717647, 1, 1)
+z_index = 20
+material = SubResource("CanvasItemMaterial_1su82")
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_gnc5j")

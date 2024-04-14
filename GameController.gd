@@ -62,6 +62,7 @@ func trigger_defeat():
 
 func trigger_victory():
 	victory_screen.visible = true;
+	victory_screen.self_modulate = Color.hex(0x00000000)
 	victory_screen.get_node("VBoxContainer").position.y = -1000.0
 	get_node("/root/Game/VictorySound").play()
 	%VictorySlide.play("slide_ui");
