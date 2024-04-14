@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://blynnad8io5er"]
+[gd_scene load_steps=10 format=3 uid="uid://blynnad8io5er"]
 
 [ext_resource type="Script" path="res://accumulation.gd" id="1_f6by4"]
 [ext_resource type="Texture2D" uid="uid://c7jgrbbnkoqpq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="1_gnc5j"]
@@ -20,6 +20,10 @@ blend_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1su82"]
 blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_amljn"]
+offsets = PackedFloat32Array(0, 0.979424)
+colors = PackedColorArray(0, 0.388235, 1, 0, 0, 0.389239, 1, 1)
 
 [node name="Accumulation" type="Node2D"]
 script = ExtResource("1_f6by4")
@@ -57,3 +61,9 @@ z_index = 20
 material = SubResource("CanvasItemMaterial_1su82")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_gnc5j")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(1, 1)
+width = 16.0
+default_color = Color(1, 1, 1, 0.572549)
+gradient = SubResource("Gradient_amljn")

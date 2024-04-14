@@ -64,7 +64,6 @@ func trigger_victory():
 	victory_screen.visible = true;
 	victory_screen.self_modulate = Color.hex(0x00000000)
 	victory_screen.get_node("VBoxContainer").position.y = -1000.0
-	get_node("/root/Game/VictorySound").play()
 	%VictorySlide.play("slide_ui");
 	%VictoryButton.grab_focus();
 
@@ -78,6 +77,9 @@ func _on_restart_level_pressed():
 
 func demon_released():
 	get_node("/root/Game/DefeatSound").play()
+
+func demon_sealed():
+	get_node("/root/Game/VictorySound").play()
 
 func preclear_level():
 	for node in get_tree().get_nodes_in_group("volatile"):

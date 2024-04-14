@@ -20,6 +20,7 @@ func _ready():
 	hero.alive = true
 	hero.iframe = 10
 	hero.won = false
+	hero.visible = true
 	hero.freeze()
 
 	for x in self.get_used_cells(1):
@@ -45,6 +46,7 @@ func _process(delta):
 		lost_reason = "time_out"
 		lost = true
 		time = 0.0
+		hero.alive = false
 
 	if get_node("/root/Game/Hero").velocity != Vector2.ZERO:
 		started = true
