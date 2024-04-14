@@ -7,6 +7,8 @@ var detector = preload ("res://detector.tscn")
 var time = 0.0;
 var won = false
 var lost = false
+var lost_reason
+
 var started = false;
 
 func _ready():
@@ -31,12 +33,14 @@ func _process(delta):
 	var hero = get_node("/root/Game/Hero");
 
 	if !hero.alive:
+		lost_reason = hero.death_reason
 		lost = true
 
 	if !won and !lost and started:
 		time -= delta;
 
 	if time < 0:
+		lost_reason = "time_out"
 		lost = true
 		time = 0.0
 

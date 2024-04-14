@@ -26,7 +26,7 @@ func _process(delta):
 			shadow_delay_current = SHADOW_DELAY
 			var shadow = Shadow.instantiate()
 			shadow.rotation = rotation
-			shadow.position = position
+			shadow.position = $AnimatedSprite2D.global_position
 			get_node("/root/Game").add_child(shadow)
 
 	#$DashParticles.process_material.set_shader_parameter("emission_angle", rotation_degrees)
@@ -45,6 +45,7 @@ var drift = Vector2.ZERO
 var drift_direction = Vector2.ZERO
 var direction = Vector2.ZERO
 var alive = true
+var death_reason
 
 enum DashStatus {DASHING, DASH_EXIT, DRIFTING, NONE}
 
@@ -154,4 +155,5 @@ func _physics_process(delta):
 	move_and_slide()
 
 func hit():
+	death_reason = "hit"
 	alive = false
