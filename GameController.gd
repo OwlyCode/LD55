@@ -22,6 +22,8 @@ var sentences_good = [
 	"See you later demonizer!",
 	"In a while, old vile",
 	"See you in a thousand years, looser!",
+	"You shall not pass! n00b.",
+	# "Looks like you got...(••) / ( ••)>⌐■-■ / (⌐■_■)...unsummoned...YEEEAAAHH!"
 ]
 
 var sentences_bad = [

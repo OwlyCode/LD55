@@ -1,16 +1,46 @@
 extends AudioStreamPlayer
 
+var playlist = [
+	["Demon Sealer - Laaren", preload ("res://assets/game_loop.mp3"), 1.0],
+	["Monster Washer - Makse", preload ("res://assets/playlist/Makse_Monster_washer.ogg"), 2.0],
+	["Fortnite Dance On Your Grandmas Grave - Laaren", preload ("res://assets/playlist/Laaren_Fortnite_Dance_On_Your_Grandmas_Grave.ogg"), 3.0],
+]
+
+var current_music = 0
+
 var samples = []
 
 var bpm = 0.5
+
+var hide_music_name = 3.0
 
 var spectrum
 
 func _ready():
 	spectrum = AudioServer.get_bus_effect_instance(1, 0)
+	stream = playlist[current_music][1]
+	%SongDisplay.text = "Now playing: " + playlist[current_music][0]
+	%SongDisplay.visible_ratio = 0.0
+	play()
+
+func _on_finished():
+	current_music = (current_music + 1) % len(playlist)
+	stream = playlist[current_music][1]
+	%SongDisplay.text = "Now playing: " + playlist[current_music][0]
+	hide_music_name = 3.0
+	play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if %SongDisplay.visible_ratio >= 1.0:
+		%SongDisplay.visible_ratio = 1.0
+		hide_music_name -= delta
+
+	if hide_music_name <= 0.0 and %SongDisplay.visible_ratio >= 0.0:
+		%SongDisplay.visible_ratio -= delta
+	else:
+		%SongDisplay.visible_ratio += delta
+
 	var time = get_playback_position() + AudioServer.get_time_since_last_mix()
 	# Compensate for output latency.
 	time -= AudioServer.get_output_latency()
@@ -36,7 +66,7 @@ func _process(delta):
 	if len(samples) > 20:
 		samples.pop_front()
 
-	var beat_value = (samples.reduce(sum, 0) / len(samples));
+	var beat_value = (samples.reduce(sum, 0) / len(samples)) / 12.0 * playlist[current_music][2];
 
 	get_node("/root/Game/Visualizer/Left").position.y = 30 - beat_value * 30.0
 	get_node("/root/Game/Visualizer/Right").position.y = -20 + beat_value * 30.0

@@ -6,13 +6,6 @@
 - ecran de victoire
     - Nom du niveau
     - Slide magicien
-- phrases cools pour les écrans
-    - GG, no re
-    - A wizard is never late.
-    - Fly, you fools!
-    - Say hello to the Devil for me!
-    - See you later demonizer!
-    - In a while, old vile!
 
 - Animation de mort par projectile
 - Animation de time out
