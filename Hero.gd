@@ -105,8 +105,15 @@ func _physics_process(delta):
 		if dashing_time <= 0:
 			dash_status = DashStatus.DASH_EXIT
 
+	if dash_status in [DashStatus.DASHING, DashStatus.DASH_EXIT] and !$DashSlide.playing:
+		$DashSlide.play()
+	elif $DashSlide.playing:
+		$DashSlide.stop()
+
 	if dash_asked:
 		dash_asked = false
+		if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
+			$DashStart.play()
 		dash_status = DashStatus.DASHING
 		dashing_time = DASH_TIME
 		dash_exit_time = DASH_EXIT_TIME
@@ -136,7 +143,6 @@ func _physics_process(delta):
 				velocity = velocity.rotated( - angle * 0.1)
 				direction = direction.rotated( - angle * 0.1)
 				drift = drift.rotated( - angle * 0.1)
-				print(["SNAP", deg_angle, direction])
 
 	move_and_slide()
 
