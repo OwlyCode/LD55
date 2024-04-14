@@ -41,7 +41,7 @@ animations = [{
 height = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bcqp"]
-size = Vector2(10, 32)
+size = Vector2(16, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i0eo"]
 bg_color = Color(0, 0.486275, 0.6, 0.658824)
@@ -133,25 +133,27 @@ autoplay = true
 z_index = 5
 position = Vector2(209, 238)
 motion_mode = 1
+wall_min_slide_angle = 1.5708
 safe_margin = 1.0
 script = ExtResource("3_ra3nm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hero"]
+position = Vector2(10, 0)
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_bfs25")
 animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hero"]
-position = Vector2(-10, 0)
 shape = SubResource("CapsuleShape2D_c71xf")
 
 [node name="CleanerDetection" type="Area2D" parent="Hero"]
+position = Vector2(10, 0)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hero/CleanerDetection"]
-position = Vector2(11, 0)
+position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_8bcqp")
 
 [node name="DashStart" type="AudioStreamPlayer" parent="Hero"]

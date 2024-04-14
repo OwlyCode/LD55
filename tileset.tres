@@ -89,6 +89,11 @@ texture_region_size = Vector2i(32, 32)
 6:4/0/physics_layer_0/angular_velocity = 0.0
 6:4/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 6:4/0/physics_layer_1/angular_velocity = 0.0
+4:3/0 = 0
+4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_0/angular_velocity = 0.0
+4:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_1/angular_velocity = 0.0
 
 [resource]
 tile_size = Vector2i(32, 32)

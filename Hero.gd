@@ -8,7 +8,7 @@ const SHADOW_DELAY = 0.05
 var shadow_delay_current = SHADOW_DELAY;
 
 func _process(delta):
-	if Input.is_action_pressed("dash")&&dash_status:
+	if Input.is_action_pressed("dash"):
 		dash_asked = true
 		get_tree().call_group("camera", "camera_shake", 2.0, 2)
 
