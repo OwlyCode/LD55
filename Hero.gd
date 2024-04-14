@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var Shadow = preload ("res://Shadow.tscn")
+var Puffle = preload ("res://puffle.tscn")
 
 const SHADOW_DELAY = 0.05
 
@@ -10,6 +11,11 @@ func _process(delta):
 	if Input.is_action_pressed("dash")&&dash_status:
 		dash_asked = true
 		get_tree().call_group("camera", "camera_shake", 2.0, 2)
+
+		if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
+			var puffle = Puffle.instantiate()
+			get_tree().root.add_child(puffle)
+			puffle.position = position
 
 	# $DriftSmoke.emitting = dash_status == DashStatus.DRIFTING and (last_position.distance_to(position) > 5.0 * delta)
 
@@ -94,6 +100,7 @@ func _physics_process(delta):
 			dash_status = DashStatus.DRIFTING
 			drift_direction = velocity.normalized()
 			drift = velocity
+			$DashOut.play()
 
 	# DASH
 	if dash_status == DashStatus.DASHING:
@@ -107,7 +114,7 @@ func _physics_process(delta):
 
 	if dash_status in [DashStatus.DASHING, DashStatus.DASH_EXIT] and !$DashSlide.playing:
 		$DashSlide.play()
-	elif $DashSlide.playing:
+	elif $DashSlide.playing and dash_status in [DashStatus.DRIFTING, DashStatus.NONE]:
 		$DashSlide.stop()
 
 	if dash_asked:

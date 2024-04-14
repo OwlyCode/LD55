@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm6ilpe28cveq"]
+
+[ext_resource type="Texture2D" uid="uid://dlqxxmfic0gb2" path="res://assets/tileset2.png" id="1_4di6q"]
+[ext_resource type="Script" path="res://puffle.gd" id="2_1jvgo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njwba"]
+atlas = ExtResource("1_4di6q")
+region = Rect2(160.293, 62.6478, 23.5127, 25.2694)
+
+[sub_resource type="Curve" id="Curve_p1l3j"]
+max_value = 4.0
+_data = [Vector2(0.0210526, 0.583649), 0.0, 0.0, 0, 0, Vector2(0.989474, 1.45807), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4kurg"]
+offsets = PackedFloat32Array(0, 0.693333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Puffle" type="CPUParticles2D"]
+z_index = 1
+position = Vector2(140, 290)
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 0.98
+texture = SubResource("AtlasTexture_njwba")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_curve = SubResource("Curve_p1l3j")
+color_ramp = SubResource("Gradient_4kurg")
+script = ExtResource("2_1jvgo")
