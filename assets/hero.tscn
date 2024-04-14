@@ -1,0 +1,182 @@
+[gd_scene load_steps=14 format=3 uid="uid://b4q3avdlmjiq4"]
+
+[ext_resource type="Script" path="res://Hero.gd" id="1_tpvrw"]
+[ext_resource type="Texture2D" uid="uid://d335yy0w8orwg" path="res://assets/hero/perso_principal0001.png" id="2_scylt"]
+[ext_resource type="Texture2D" uid="uid://cktul08japn6c" path="res://assets/hero/perso_principal0000.png" id="3_svr75"]
+[ext_resource type="AudioStream" uid="uid://3g7b283fypot" path="res://assets/DASH_impact_ogg.ogg" id="4_dsmx7"]
+[ext_resource type="AudioStream" uid="uid://dnlecxqyeq7t4" path="res://assets/Dash_slide_long_3_ogg.ogg" id="5_vwda2"]
+[ext_resource type="AudioStream" uid="uid://ifqrrkyvgh1" path="res://assets/Dash_OUT_2_ogg.ogg" id="6_qaf3i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bfs25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_scylt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_svr75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_scylt")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c71xf"]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bcqp"]
+size = Vector2(16, 32)
+
+[sub_resource type="Animation" id="Animation_1r8h4"]
+resource_name = "fall"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"demon_released"
+}, {
+"args": [],
+"method": &"trigger_defeat"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fjtin"]
+resource_name = "idle"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7c0st"]
+_data = {
+"fall": SubResource("Animation_1r8h4"),
+"idle": SubResource("Animation_fjtin")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2o1kw"]
+radius = 12.0416
+
+[node name="Hero" type="CharacterBody2D" groups=["hero"]]
+z_index = 5
+position = Vector2(10, 0)
+motion_mode = 1
+wall_min_slide_angle = 1.5708
+safe_margin = 1.0
+script = ExtResource("1_tpvrw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, 0)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_bfs25")
+animation = &"move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_c71xf")
+
+[node name="CleanerDetection" type="Area2D" parent="."]
+position = Vector2(10, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CleanerDetection"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_8bcqp")
+
+[node name="DashStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dsmx7")
+
+[node name="DashSlide" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vwda2")
+volume_db = -3.0
+
+[node name="DashOut" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_qaf3i")
+volume_db = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7c0st")
+}
+
+[node name="Grounded" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounded"]
+shape = SubResource("CircleShape2D_2o1kw")

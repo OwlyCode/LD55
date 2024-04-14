@@ -17,8 +17,6 @@ func _process(delta):
 
 	time = time - floor(time)
 
-	print("Time is: ", time - floor(time))
-
 	# if time > 0.5:
 	# 	time = time - 0.5
 	# 	get_node("/root/Game/Visualizer").self_modulate = Color.html("#555555").lerp(Color.BLACK, time / 0.5)
@@ -32,7 +30,6 @@ func _process(delta):
 		spectrum.get_magnitude_for_frequency_range(1500, 2000).length(),
 		spectrum.get_magnitude_for_frequency_range(2000, 2500).length()
 	];
-	print(magnitude)
 
 	samples.push_back(magnitude[0] / 0.01)
 

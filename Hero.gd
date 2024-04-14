@@ -1,12 +1,40 @@
 extends CharacterBody2D
 
-var Shadow = preload ("res://Shadow.tscn")
+var Shadow = preload ("res://shadow.tscn")
 var Puffle = preload ("res://puffle.tscn")
 
 const SHADOW_DELAY = 0.05
 
 var shadow_delay_current = SHADOW_DELAY;
 var iframe = 10
+var dash_asked = false
+
+var drift = Vector2.ZERO
+var drift_direction = Vector2.ZERO
+var direction = Vector2.ZERO
+var alive = true
+var death_reason
+
+enum DashStatus {DASHING, DASH_EXIT, DRIFTING, NONE}
+
+var dash_status = DashStatus.NONE;
+
+var last_position = Vector2.ZERO
+
+const MOVE_SPEED = 10000 * 1.6
+const DASH_SPEED = 10000 * 4.0;
+const DRIFT_INITIAL_SPEED = DASH_SPEED / 3.0;
+
+const DASH_TIME = 0.04;
+const DASH_EXIT_TIME = 0.05;
+const DRIFTING_TIME = 0.20;
+
+const SNAP_DISTANCE = 32.0
+const SNAP_ANGLE = 20.0
+
+var dashing_time = 0.0
+var dash_exit_time = 0.0
+var drift_time = 0.0
 
 func _process(delta):
 	if Input.is_action_pressed("dash") and alive:
@@ -48,35 +76,6 @@ func _process(delta):
 
 	if iframe < 0:
 		iframe = 0
-
-var dash_asked = false
-
-var drift = Vector2.ZERO
-var drift_direction = Vector2.ZERO
-var direction = Vector2.ZERO
-var alive = true
-var death_reason
-
-enum DashStatus {DASHING, DASH_EXIT, DRIFTING, NONE}
-
-var dash_status = DashStatus.NONE;
-
-var last_position = Vector2.ZERO
-
-const MOVE_SPEED = 10000 * 1.6
-const DASH_SPEED = 10000 * 4.0;
-const DRIFT_INITIAL_SPEED = DASH_SPEED / 3.0;
-
-const DASH_TIME = 0.04;
-const DASH_EXIT_TIME = 0.05;
-const DRIFTING_TIME = 0.20;
-
-const SNAP_DISTANCE = 32.0
-const SNAP_ANGLE = 20.0
-
-var dashing_time = 0.0
-var dash_exit_time = 0.0
-var drift_time = 0.0
 
 func freeze():
 	velocity = Vector2.ZERO

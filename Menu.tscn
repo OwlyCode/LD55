@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyl3trf73b6k"]
 
 [ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="1_d7tj8"]
-[ext_resource type="AudioStream" uid="uid://bryuwa1p6uwxb" path="res://assets/menu.ogg" id="2_qw5a7"]
 [ext_resource type="Script" path="res://MainButton.gd" id="2_u21fk"]
+[ext_resource type="AudioStream" uid="uid://slya4itxl3mf" path="res://Demon_Sealer_menu.ogg" id="3_8x1us"]
 
 [node name="Menu" type="Node2D"]
 
@@ -47,7 +47,7 @@ text = "[wave]DEMON DASHER[/wave]"
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_qw5a7")
+stream = ExtResource("3_8x1us")
 volume_db = -13.157
 autoplay = true
 
