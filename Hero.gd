@@ -7,7 +7,7 @@ const SHADOW_DELAY = 0.05
 var shadow_delay_current = SHADOW_DELAY;
 
 func _process(delta):
-	if Input.is_action_just_pressed("dash")&&dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
+	if Input.is_action_pressed("dash")&&dash_status:
 		dash_asked = true
 		get_tree().call_group("camera", "camera_shake", 2.0, 2)
 
@@ -26,9 +26,9 @@ func _process(delta):
 	#$DashParticles.process_material.set_shader_parameter("emission_angle", rotation_degrees)
 
 	last_position = position
+	look_at(transform.origin + direction)
 
 	if velocity:
-		look_at(transform.origin + velocity)
 		$AnimatedSprite2D.play("move")
 	else:
 		$AnimatedSprite2D.play("idle")
@@ -47,12 +47,12 @@ var dash_status = DashStatus.NONE;
 var last_position = Vector2.ZERO
 
 const MOVE_SPEED = 10000 * 1.6
-const DASH_SPEED = 10000 * 6.0;
+const DASH_SPEED = 10000 * 4.0;
 const DRIFT_INITIAL_SPEED = DASH_SPEED / 3.0;
 
-const DASH_TIME = 0.1;
+const DASH_TIME = 0.04;
 const DASH_EXIT_TIME = 0.05;
-const DRIFTING_TIME = 0.25;
+const DRIFTING_TIME = 0.20;
 
 const SNAP_DISTANCE = 32.0
 const SNAP_ANGLE = 20.0
@@ -70,7 +70,6 @@ func freeze():
 func _physics_process(delta):
 	if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
 		direction = Input.get_vector("left", "right", "up", "down")
-
 		velocity = (direction * MOVE_SPEED) * delta + drift
 
 	# DRIFT
