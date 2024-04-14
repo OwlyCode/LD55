@@ -1,4 +1,3 @@
-- ecran du menu
 - Animation de time out: feu
 
 - PONDRE DES LEVELS
