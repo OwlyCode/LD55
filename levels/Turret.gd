@@ -22,6 +22,7 @@ func _process(delta):
 		shoot()
 
 func shoot():
+	$Fire.play()
 	var a = Bullet.instantiate()
 	a.start(global_position, rotation + 0.25)
 

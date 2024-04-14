@@ -17,11 +17,13 @@ func _physics_process(delta):
 	iframe -= delta
 
 	if collision and iframe <= 0:
+		$Bounce.play()
 		iframe = 0.5
 		velocity = velocity.bounce(collision.get_normal())
 		bounce_count -= 1
 		if collision.get_collider().has_method("hit"):
-			collision.get_collider().hit()
+			if collision.get_collider().hit():
+				queue_free()
 
 		if bounce_count < 0:
 			queue_free()

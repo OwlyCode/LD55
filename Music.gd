@@ -36,8 +36,13 @@ func _process(delta):
 	if len(samples) > 20:
 		samples.pop_front()
 
-	get_node("/root/Game/Visualizer/Left").position.y = 30 - (samples.reduce(sum, 0) / len(samples)) * 30.0
-	get_node("/root/Game/Visualizer/Right").position.y = -20 + (samples.reduce(sum, 0) / len(samples)) * 30.0
+	var beat_value = (samples.reduce(sum, 0) / len(samples));
+
+	get_node("/root/Game/Visualizer/Left").position.y = 30 - beat_value * 30.0
+	get_node("/root/Game/Visualizer/Right").position.y = -20 + beat_value * 30.0
+
+	for node in get_tree().get_nodes_in_group("beat"):
+		node.beat(beat_value)
 
 	# get_node("/root/Game/Visualizer").self_modulate = Color.WHITE.lerp(Color.BLACK, 1.0 - samples.reduce(sum, 0) / len(samples))
 

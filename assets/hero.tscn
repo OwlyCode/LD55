@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4q3avdlmjiq4"]
+[gd_scene load_steps=15 format=3 uid="uid://b4q3avdlmjiq4"]
 
 [ext_resource type="Script" path="res://Hero.gd" id="1_tpvrw"]
 [ext_resource type="Texture2D" uid="uid://d335yy0w8orwg" path="res://assets/hero/perso_principal0001.png" id="2_scylt"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://3g7b283fypot" path="res://assets/DASH_impact_ogg.ogg" id="4_dsmx7"]
 [ext_resource type="AudioStream" uid="uid://dnlecxqyeq7t4" path="res://assets/Dash_slide_long_3_ogg.ogg" id="5_vwda2"]
 [ext_resource type="AudioStream" uid="uid://ifqrrkyvgh1" path="res://assets/Dash_OUT_2_ogg.ogg" id="6_qaf3i"]
+[ext_resource type="AudioStream" uid="uid://dp8xhmesgt4yr" path="res://Magicien_touche_2.ogg" id="7_tj80i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bfs25"]
 animations = [{
@@ -180,3 +181,6 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grounded"]
 shape = SubResource("CircleShape2D_2o1kw")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tj80i")

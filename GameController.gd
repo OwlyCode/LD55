@@ -1,10 +1,10 @@
 extends Node2D
 
 var levels = [
-	preload ("res://levels/level_04.tscn"),
 	preload ("res://levels/level_02.tscn"),
 	preload ("res://levels/level_03.tscn"),
 	preload ("res://levels/level_01.tscn"),
+	preload ("res://levels/level_04.tscn"),
 ]
 
 var current_level = 0;
@@ -51,7 +51,12 @@ func _process(_delta):
 
 func trigger_defeat():
 	defeat_screen.visible = true;
+	defeat_screen.self_modulate = Color.hex(0x00000000)
+	defeat_screen.get_node("Demon").self_modulate = Color.hex(0x00000000)
+	defeat_screen.get_node("VBoxContainer").position.y = 1000.0
+
 	get_node("UI/Timeout").visible = false
+
 	%DefeatSlide.play("ui_slide");
 	%DefeatButton.grab_focus();
 
@@ -72,6 +77,10 @@ func _on_restart_level_pressed():
 
 func demon_released():
 	get_node("/root/Game/DefeatSound").play()
+
+func preclear_level():
+	for node in get_tree().get_nodes_in_group("volatile"):
+		node.queue_free()
 
 func clear_level():
 	defeat_triggered = false

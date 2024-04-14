@@ -1,12 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://rtcqmoq4q7wd"]
+[gd_scene load_steps=7 format=3 uid="uid://rtcqmoq4q7wd"]
 
+[ext_resource type="Script" path="res://portal_out.gd" id="1_pi53e"]
 [ext_resource type="Texture2D" uid="uid://dlqxxmfic0gb2" path="res://assets/tileset2.png" id="1_yqf06"]
+[ext_resource type="Texture2D" uid="uid://c7jgrbbnkoqpq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="2_wub2p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wospu"]
 atlas = ExtResource("1_yqf06")
 region = Rect2(63.1051, 96.8625, 33.3772, 33.7826)
 
-[node name="PortalOut" type="Node2D"]
+[sub_resource type="Curve" id="Curve_exryn"]
+max_value = 10.0
+_data = [Vector2(0, 0.139064), 0.0, 0.0, 0, 0, Vector2(1, 0.960809), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_iia40"]
+max_value = 4.0
+_data = [Vector2(0.0105263, 0.515802), 0.0, 0.0, 0, 0, Vector2(1, 2.97008), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="PortalOut" type="Node2D" groups=["beat"]]
+script = ExtResource("1_pi53e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_wospu")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 12
+emission_shape = 2
+emission_sphere_radius = 18.64
+gravity = Vector2(0, 0)
+radial_accel_min = 50.0
+radial_accel_max = 50.0
+radial_accel_curve = SubResource("Curve_exryn")
+scale_amount_curve = SubResource("Curve_iia40")
+
+[node name="Light" type="PointLight2D" parent="."]
+color = Color(1, 0.568627, 0.156863, 1)
+energy = 6.88
+texture = ExtResource("2_wub2p")
+texture_scale = 0.4

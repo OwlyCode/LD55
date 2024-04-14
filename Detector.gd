@@ -10,6 +10,7 @@ func _process(_delta):
 		return
 
 	if !popped and has_overlapping_areas():
+		$AudioStreamPlayer.play()
 		popped = true
 		var puffle = Puffle.instantiate();
 		puffle.position = position;
@@ -19,4 +20,11 @@ func _process(_delta):
 
 		tilemap.set_cell(1, coords, -1)
 
+		$Light.queue_free()
+
 		return
+
+func beat(beat_value):
+	if get_node_or_null("Light"):
+		$Light.scale.x = 0.2 + 0.4 * beat_value
+		$Light.scale.y = 0.2 + 0.4 * beat_value

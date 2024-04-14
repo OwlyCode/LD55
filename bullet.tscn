@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bexdwwrdfhpg3"]
+[gd_scene load_steps=6 format=3 uid="uid://bexdwwrdfhpg3"]
 
 [ext_resource type="Script" path="res://levels/Bullet.gd" id="1_wyptr"]
 [ext_resource type="Texture2D" uid="uid://dlqxxmfic0gb2" path="res://assets/tileset2.png" id="2_dxf7o"]
+[ext_resource type="AudioStream" uid="uid://426oqi5bbt43" path="res://Rebond_Projectile.ogg" id="3_myjyq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ilivf"]
 atlas = ExtResource("2_dxf7o")
@@ -23,3 +24,6 @@ texture = SubResource("AtlasTexture_ilivf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 1)
 shape = SubResource("CircleShape2D_w4i4c")
+
+[node name="Bounce" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_myjyq")

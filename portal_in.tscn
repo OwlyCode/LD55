@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cidu0qtuo1kfa"]
+[gd_scene load_steps=10 format=3 uid="uid://cidu0qtuo1kfa"]
 
 [ext_resource type="Script" path="res://PortalIn.gd" id="1_jfi5y"]
 [ext_resource type="Texture2D" uid="uid://dlqxxmfic0gb2" path="res://assets/tileset2.png" id="2_kpk1w"]
+[ext_resource type="AudioStream" uid="uid://cwlj6c1kli35k" path="res://TP_1.ogg" id="3_glcfm"]
+[ext_resource type="Texture2D" uid="uid://c7jgrbbnkoqpq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_h8lxb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlhor"]
 atlas = ExtResource("2_kpk1w")
@@ -9,7 +11,21 @@ region = Rect2(32.5818, 63.4681, 32.9141, 33.8134)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_attp7"]
 
-[node name="PortalIn" type="Node2D"]
+[sub_resource type="Curve" id="Curve_tqq0e"]
+max_value = 10.0
+_data = [Vector2(0, 0.139064), 0.0, 0.0, 0, 0, Vector2(1, 0.960809), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_qulo4"]
+max_value = 4.0
+_data = [Vector2(0.0210526, 2.86051), 0.0, 0.0, 0, 0, Vector2(1, 1.72103), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_80df2"]
+offsets = PackedFloat32Array(0, 0.979424)
+colors = PackedColorArray(0, 0.388235, 1, 0, 0, 0.389239, 1, 1)
+
+[node name="PortalIn" type="Node2D" groups=["beat"]]
 script = ExtResource("1_jfi5y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,5 +36,30 @@ texture = SubResource("AtlasTexture_nlhor")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_attp7")
+
+[node name="Enter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_glcfm")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 12
+emission_shape = 2
+emission_sphere_radius = 37.66
+gravity = Vector2(0, 0)
+radial_accel_min = -50.0
+radial_accel_max = -50.0
+radial_accel_curve = SubResource("Curve_tqq0e")
+scale_amount_curve = SubResource("Curve_qulo4")
+
+[node name="Light" type="PointLight2D" parent="."]
+color = Color(0.0509804, 0.647059, 1, 1)
+energy = 6.88
+texture = ExtResource("4_h8lxb")
+texture_scale = 0.4
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(1, 1)
+width = 16.0
+default_color = Color(1, 1, 1, 0.572549)
+gradient = SubResource("Gradient_80df2")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

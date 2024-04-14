@@ -169,5 +169,11 @@ func _physics_process(delta):
 	move_and_slide()
 
 func hit():
-	death_reason = "hit"
-	alive = false
+	var was_alive = alive
+
+	if alive:
+		$Hit.play()
+		death_reason = "hit"
+		alive = false
+
+	return was_alive
