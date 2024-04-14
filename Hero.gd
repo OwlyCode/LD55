@@ -9,6 +9,7 @@ var shadow_delay_current = SHADOW_DELAY;
 func _process(delta):
 	if Input.is_action_just_pressed("dash")&&dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
 		dash_asked = true
+		get_tree().call_group("camera", "camera_shake", 2.0, 2)
 
 	# $DriftSmoke.emitting = dash_status == DashStatus.DRIFTING and (last_position.distance_to(position) > 5.0 * delta)
 

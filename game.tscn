@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0bhst7mxaeo0"]
+[gd_scene load_steps=23 format=3 uid="uid://d0bhst7mxaeo0"]
 
 [ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
 [ext_resource type="AudioStream" uid="uid://c8s1w4h4he2ql" path="res://assets/game_loop.mp3" id="2_p33cs"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="2_wp75t"]
 [ext_resource type="Script" path="res://Hero.gd" id="3_ra3nm"]
 [ext_resource type="Script" path="res://TimeDisplay.gd" id="4_dm4ck"]
 [ext_resource type="Texture2D" uid="uid://cktul08japn6c" path="res://assets/hero/perso_principal0000.png" id="5_0ytsv"]
@@ -121,9 +122,10 @@ _data = {
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5damq")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 position = Vector2(424, 390)
 zoom = Vector2(1.4, 1.4)
+script = ExtResource("2_wp75t")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_p33cs")
