@@ -14,10 +14,6 @@
     - See you later demonizer!
     - In a while, old vile!
 
-- Améliorer feedback des TPs
-    - FX teleport
-
-- Animation de victoire
 - Animation de mort par projectile
 - Animation de time out
     - tentacules

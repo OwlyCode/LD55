@@ -220,7 +220,6 @@ script = ExtResource("4_dm4ck")
 
 [node name="Victory" type="Panel" parent="UI"]
 visible = false
-self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -241,9 +240,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0
-offset_top = -300.0
+offset_top = 251.5
 offset_right = 300.0
-offset_bottom = -155.0
+offset_bottom = 396.5
 grow_horizontal = 2
 
 [node name="HFlowContainer2" type="HFlowContainer" parent="UI/Victory/VBoxContainer"]
@@ -266,12 +265,14 @@ text = "[center][wave]DEMON SEALED[/wave][/center]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/Victory/VBoxContainer/HFlowContainer3"]
+[node name="VictoryPunchline" type="Label" parent="UI/Victory/VBoxContainer/HFlowContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 26
-text = "See you in a thousand years, looser!"
+text = "..."
+horizontal_alignment = 1
 
 [node name="HFlowContainer" type="HFlowContainer" parent="UI/Victory/VBoxContainer"]
 layout_mode = 2
@@ -279,13 +280,11 @@ alignment = 1
 
 [node name="VictoryButton" type="Button" parent="UI/Victory/VBoxContainer/HFlowContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 text = "Continue"
 
 [node name="Defeat" type="Panel" parent="UI"]
 visible = false
-self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -294,7 +293,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6nblo")
 
 [node name="Demon" type="TextureRect" parent="UI/Defeat" groups=["beat"]]
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -326,9 +324,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = 676.0
+offset_top = 26.0
 offset_right = 300.0
-offset_bottom = 835.0
+offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -351,13 +349,16 @@ text = "[center][wave]DEMON RELEASED[/wave][/center]
 [node name="HFlowContainer3" type="HFlowContainer" parent="UI/Defeat/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="UI/Defeat/VBoxContainer/HFlowContainer3"]
+[node name="DefeatPunchline" type="Label" parent="UI/Defeat/VBoxContainer/HFlowContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 26
-text = "Meh. Global warming had doomed us already."
+text = "..."
+horizontal_alignment = 1
 
 [node name="HFlowContainer" type="HFlowContainer" parent="UI/Defeat/VBoxContainer"]
 layout_mode = 2
@@ -365,7 +366,6 @@ alignment = 1
 
 [node name="DefeatButton" type="Button" parent="UI/Defeat/VBoxContainer/HFlowContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 text = "BACK TO WORK"
 

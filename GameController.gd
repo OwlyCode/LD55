@@ -15,6 +15,20 @@ var defeat_screen: Node;
 
 var defeat_triggered = false
 
+var sentences_good = [
+	"GG, no re",
+	"A wizard is never late!",
+	"Say hello to the Devil for me!",
+	"See you later demonizer!",
+	"In a while, old vile",
+	"See you in a thousand years, looser!",
+]
+
+var sentences_bad = [
+	"Meh. Global warming had doomed us already.",
+    "Fly, you fools!",
+]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	victory_screen = get_node("/root/Game/UI/Victory")
@@ -50,6 +64,8 @@ func _process(_delta):
 		get_node("/root/Game").add_child(instance)
 
 func trigger_defeat():
+	%DefeatPunchline.text = sentences_bad.pick_random()
+
 	defeat_screen.visible = true;
 	defeat_screen.self_modulate = Color.hex(0x00000000)
 	defeat_screen.get_node("Demon").self_modulate = Color.hex(0x00000000)
@@ -61,6 +77,8 @@ func trigger_defeat():
 	%DefeatButton.grab_focus();
 
 func trigger_victory():
+	%VictoryPunchline.text = sentences_good.pick_random()
+
 	victory_screen.visible = true;
 	victory_screen.self_modulate = Color.hex(0x00000000)
 	victory_screen.get_node("VBoxContainer").position.y = -1000.0
