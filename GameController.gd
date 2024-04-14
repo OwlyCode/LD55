@@ -42,6 +42,12 @@ func _process(_delta):
 		current_level_instance = instance
 		get_node("/root/Game").add_child(instance)
 
+func trigger_defeat():
+	pass
+
+func trigger_victory():
+	pass
+
 func _on_next_level_pressed():
 	clear_level()
 	current_level = (current_level + 1) % len(levels)
