@@ -18,6 +18,7 @@ func _ready():
 
 	hero.position = get_node("../Spawn").position
 	hero.alive = true
+	hero.iframe = 10
 	hero.freeze()
 
 	for x in self.get_used_cells(1):

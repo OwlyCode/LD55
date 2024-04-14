@@ -2,8 +2,8 @@ extends Node2D
 
 var levels = [
 	preload ("res://levels/level_03.tscn"),
-	preload ("res://levels/level_01.tscn"),
 	preload ("res://levels/level_02.tscn"),
+	preload ("res://levels/level_01.tscn"),
 ]
 
 var current_level = 0;
@@ -39,6 +39,8 @@ func _process(_delta):
 					$TimeoutPlayer.play("time_out")
 					get_node("UI/Time").visible = false
 				if tilemap.lost_reason == "hit":
+					get_node("Hero/AnimationPlayer").play("fall")
+				if tilemap.lost_reason == "fall":
 					get_node("Hero/AnimationPlayer").play("fall")
 
 	if current_level_instance == null:

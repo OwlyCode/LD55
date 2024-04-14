@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d0bhst7mxaeo0"]
+[gd_scene load_steps=30 format=3 uid="uid://d0bhst7mxaeo0"]
 
 [ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
 [ext_resource type="AudioStream" uid="uid://c8s1w4h4he2ql" path="res://assets/game_loop.mp3" id="2_p33cs"]
@@ -133,6 +133,9 @@ _data = {
 "fall": SubResource("Animation_1r8h4"),
 "idle": SubResource("Animation_fjtin")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2o1kw"]
+radius = 12.0416
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i0eo"]
 bg_color = Color(0, 0.486275, 0.6, 0.658824)
@@ -291,14 +294,23 @@ stream = ExtResource("7_55k2h")
 
 [node name="DashSlide" type="AudioStreamPlayer" parent="Hero"]
 stream = ExtResource("8_8vccl")
+volume_db = -3.0
 
 [node name="DashOut" type="AudioStreamPlayer" parent="Hero"]
 stream = ExtResource("9_pt2x3")
+volume_db = -10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hero"]
 libraries = {
 "": SubResource("AnimationLibrary_7c0st")
 }
+
+[node name="Grounded" type="Area2D" parent="Hero"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero/Grounded"]
+shape = SubResource("CircleShape2D_2o1kw")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

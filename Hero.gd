@@ -6,9 +6,10 @@ var Puffle = preload ("res://puffle.tscn")
 const SHADOW_DELAY = 0.05
 
 var shadow_delay_current = SHADOW_DELAY;
+var iframe = 10
 
 func _process(delta):
-	if Input.is_action_pressed("dash"):
+	if Input.is_action_pressed("dash") and alive:
 		dash_asked = true
 		get_tree().call_group("camera", "camera_shake", 2.0, 2)
 
@@ -38,6 +39,15 @@ func _process(delta):
 		$AnimatedSprite2D.play("move")
 	else:
 		$AnimatedSprite2D.play("idle")
+
+	if iframe == 0 and !$Grounded.has_overlapping_bodies():
+		alive = false
+		death_reason = "fall"
+
+	iframe -= 1
+
+	if iframe < 0:
+		iframe = 0
 
 var dash_asked = false
 
@@ -75,7 +85,12 @@ func freeze():
 	dash_status = DashStatus.NONE
 
 func _physics_process(delta):
-	if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
+	if !alive:
+		velocity = Vector2.ZERO
+		direction = Vector2.ZERO
+		drift = Vector2.ZERO
+
+	if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT] and alive:
 		direction = Input.get_vector("left", "right", "up", "down")
 		velocity = (direction * MOVE_SPEED) * delta + drift
 
@@ -120,8 +135,8 @@ func _physics_process(delta):
 
 	if dash_asked:
 		dash_asked = false
-		if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
-			$DashStart.play()
+		# if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
+		# 	$DashStart.play()
 		dash_status = DashStatus.DASHING
 		dashing_time = DASH_TIME
 		dash_exit_time = DASH_EXIT_TIME
