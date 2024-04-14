@@ -1,10 +1,133 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyl3trf73b6k"]
+[gd_scene load_steps=16 format=3 uid="uid://dyl3trf73b6k"]
 
 [ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="1_d7tj8"]
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_lq6ln"]
 [ext_resource type="Script" path="res://MainButton.gd" id="2_u21fk"]
 [ext_resource type="AudioStream" uid="uid://slya4itxl3mf" path="res://Demon_Sealer_menu.ogg" id="3_8x1us"]
+[ext_resource type="Texture2D" uid="uid://cxierplq0vxal" path="res://assets/menu_left.png" id="4_5580k"]
+[ext_resource type="Texture2D" uid="uid://bao1efl4asjum" path="res://assets/eclair.png" id="5_cc40w"]
+[ext_resource type="Texture2D" uid="uid://bn62wbpnkbjoc" path="res://assets/menu_right.png" id="5_e7bcy"]
+
+[sub_resource type="Gradient" id="Gradient_yx1wt"]
+offsets = PackedFloat32Array(0, 0.852814)
+colors = PackedColorArray(1, 1, 1, 0.32549, 0.640625, 0.640625, 0.630576, 0.227451)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qyj7u"]
+gradient = SubResource("Gradient_yx1wt")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf4r1"]
+atlas = ExtResource("5_cc40w")
+region = Rect2(109.346, 6.86066, 1097.48, 2472.17)
+
+[sub_resource type="Gradient" id="Gradient_tnjl2"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.356863, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3nv4u"]
+gradient = SubResource("Gradient_tnjl2")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Animation" id="Animation_4tk5o"]
+resource_name = "opening"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Wizard:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.1, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-450, 272), Vector2(-45, 272)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Castle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(700, 0), Vector2(310, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Button:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.4, 4.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(406, 717), Vector2(406, 300)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/RichTextLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.4, 4.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(201, -300), Vector2(201, 97)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Lightning:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 3.3, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Dash:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.3, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1500, 317), Vector2(-1000, 317)]
+}
+
+[sub_resource type="Animation" id="Animation_qv2qn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(406, 245)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_haa04"]
+_data = {
+"RESET": SubResource("Animation_qv2qn"),
+"opening": SubResource("Animation_4tk5o")
+}
 
 [node name="Menu" type="Node2D"]
+script = ExtResource("1_lq6ln")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -14,10 +137,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -112.5
-offset_top = -39.0
-offset_right = 112.5
-offset_bottom = 39.0
+offset_left = -170.0
+offset_top = -79.0
+offset_right = 171.0
+offset_bottom = -0.999725
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -26,6 +149,48 @@ theme_override_fonts/font = ExtResource("1_d7tj8")
 theme_override_font_sizes/font_size = 60
 text = "T Start T"
 script = ExtResource("2_u21fk")
+
+[node name="Label" type="Label" parent="CanvasLayer/Button"]
+layout_mode = 0
+offset_left = -27.0
+offset_top = 308.0
+offset_right = 386.0
+offset_bottom = 331.0
+text = "A game by EwileCoyote, Laaren, Makse and Owlycode"
+horizontal_alignment = 1
+
+[node name="Castle" type="TextureRect" parent="CanvasLayer"]
+offset_left = 310.0
+offset_right = 1285.0
+offset_bottom = 594.0
+texture = ExtResource("5_e7bcy")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Lightning" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1155.0
+offset_bottom = 646.0
+texture = SubResource("GradientTexture2D_qyj7u")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Lightning"]
+layout_mode = 0
+offset_left = 428.0
+offset_top = -85.0
+offset_right = 1163.0
+offset_bottom = 650.0
+texture = SubResource("AtlasTexture_pf4r1")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Wizard" type="TextureRect" parent="CanvasLayer"]
+offset_left = -45.0
+offset_top = 272.0
+offset_right = 660.0
+offset_bottom = 865.0
+texture = ExtResource("4_5580k")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = 8
@@ -39,10 +204,44 @@ offset_right = 408.0
 offset_bottom = -70.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(0.282353, 0.372549, 1, 1)
 theme_override_fonts/normal_font = ExtResource("1_d7tj8")
 theme_override_font_sizes/normal_font_size = 90
 bbcode_enabled = true
-text = "[wave]DEMON DASHER[/wave]"
+text = "[wave]DEMON SEALER[/wave]"
+
+[node name="Label" type="Label" parent="CanvasLayer/RichTextLabel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -241.5
+offset_top = -51.0
+offset_right = 242.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Made for the Ludum Dare 55: Summoning"
+horizontal_alignment = 1
+
+[node name="Dash" type="TextureRect" parent="CanvasLayer"]
+offset_left = -1000.0
+offset_top = 317.0
+offset_right = -93.0
+offset_bottom = 681.0
+texture = SubResource("GradientTexture2D_3nv4u")
+
+[node name="Wizard" type="TextureRect" parent="CanvasLayer/Dash"]
+offset_left = -143.0
+offset_top = -49.0
+offset_right = 565.0
+offset_bottom = 544.0
+texture = ExtResource("4_5580k")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
@@ -50,5 +249,10 @@ text = "[wave]DEMON DASHER[/wave]"
 stream = ExtResource("3_8x1us")
 volume_db = -13.157
 autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_haa04")
+}
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
