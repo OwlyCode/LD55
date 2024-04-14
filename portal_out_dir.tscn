@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://hd6gf20htgn3"]
+[gd_scene load_steps=3 format=3 uid="uid://hd6gf20htgn3"]
 
-[ext_resource type="Texture2D" uid="uid://bqvc4qv54s8m5" path="res://assets/portal_out_dir.png" id="1_3qphv"]
+[ext_resource type="Texture2D" uid="uid://dlqxxmfic0gb2" path="res://assets/tileset2.png" id="1_rf38c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovme1"]
+atlas = ExtResource("1_rf38c")
+region = Rect2(29.8359, 96.9712, 32.9718, 34.5934)
 
 [node name="PortalOut" type="Node2D" groups=["directional"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3qphv")
+rotation = 1.01927
+texture = SubResource("AtlasTexture_ovme1")

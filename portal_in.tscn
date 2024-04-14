@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cidu0qtuo1kfa"]
+[gd_scene load_steps=5 format=3 uid="uid://cidu0qtuo1kfa"]
 
 [ext_resource type="Script" path="res://PortalIn.gd" id="1_jfi5y"]
-[ext_resource type="Texture2D" uid="uid://dk8r8fdibtwgs" path="res://assets/portal_in.png" id="2_tpv6w"]
+[ext_resource type="Texture2D" uid="uid://dlqxxmfic0gb2" path="res://assets/tileset2.png" id="2_kpk1w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlhor"]
+atlas = ExtResource("2_kpk1w")
+region = Rect2(32.5818, 63.4681, 32.9141, 33.8134)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_attp7"]
 
@@ -10,7 +14,7 @@ script = ExtResource("1_jfi5y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("2_tpv6w")
+texture = SubResource("AtlasTexture_nlhor")
 
 [node name="Area2D" type="Area2D" parent="."]
 
