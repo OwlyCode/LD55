@@ -1,16 +1,12 @@
-- CREDITS / FIN (écran victoire customisé pour la fin ?)
 - intégrer bouton
 - réglages sons
 
-
 Bugs:
-- Gagner niveau après en avoir gagné un
+- Bullets qui se bloquent
 - Re-perdre niveau de suite ?
 - DPAD ne fonctionne pas
+
 
 Bonus:
 - Animation de mort par projectile ?
 - selection de niveau ?
-- Compteur de mort ?
-- Système de Score ?
-- Parallaxe du niveau précédet (Twyn)

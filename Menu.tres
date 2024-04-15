@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bg46tae7m2lwp"]
+
+[ext_resource type="Texture2D" uid="uid://ciwgnuotmeyrx" path="res://assets/bouton_en_kit.png" id="1_xwnqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8y28"]
+atlas = ExtResource("1_xwnqh")
+region = Rect2(192, 64, 192, 96)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kfg8e"]
+texture = SubResource("AtlasTexture_y8y28")
+texture_margin_left = 20.0
+texture_margin_top = 10.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+modulate_color = Color(0.811765, 0.819608, 0.807843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5qb7"]
+texture = SubResource("AtlasTexture_y8y28")
+texture_margin_left = 20.0
+texture_margin_top = 10.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ofaab"]
+load_path = "res://.godot/imported/bouton_en_kit.png-ee222171d7884d13242c4c42f11eabf1.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8bbn"]
+atlas = SubResource("CompressedTexture2D_ofaab")
+region = Rect2(192, 209, 192, 79)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uh6b5"]
+texture = SubResource("AtlasTexture_d8bbn")
+texture_margin_left = 20.0
+texture_margin_top = 18.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxTexture_kfg8e")
+Button/styles/normal = SubResource("StyleBoxTexture_k5qb7")
+Button/styles/pressed = SubResource("StyleBoxTexture_uh6b5")

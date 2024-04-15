@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dyl3trf73b6k"]
+[gd_scene load_steps=20 format=3 uid="uid://dyl3trf73b6k"]
 
 [ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="1_d7tj8"]
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_lq6ln"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cxierplq0vxal" path="res://assets/menu_left.png" id="4_5580k"]
 [ext_resource type="Texture2D" uid="uid://bao1efl4asjum" path="res://assets/eclair.png" id="5_cc40w"]
 [ext_resource type="Texture2D" uid="uid://bn62wbpnkbjoc" path="res://assets/menu_right.png" id="5_e7bcy"]
+[ext_resource type="Theme" uid="uid://bg46tae7m2lwp" path="res://Menu.tres" id="6_y1l8t"]
 [ext_resource type="AudioStream" uid="uid://drhrt01dqgeb8" path="res://Tonerre.ogg" id="8_uhhua"]
 
 [sub_resource type="Gradient" id="Gradient_yx1wt"]
@@ -191,17 +192,17 @@ offset_bottom = 821.0
 texture = SubResource("GradientTexture1D_nywgx")
 
 [node name="Castle" type="TextureRect" parent="CanvasLayer"]
-offset_left = 700.0
-offset_right = 1675.0
+offset_left = 310.0
+offset_right = 1285.0
 offset_bottom = 594.0
 texture = ExtResource("5_e7bcy")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="Wizard" type="TextureRect" parent="CanvasLayer"]
-offset_left = -450.0
+offset_left = -45.0
 offset_top = 272.0
-offset_right = 255.0
+offset_right = 660.0
 offset_bottom = 865.0
 texture = ExtResource("4_5580k")
 expand_mode = 2
@@ -213,10 +214,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1929.0
-offset_top = 672.0
-offset_right = 2712.0
-offset_bottom = 829.0
+offset_left = 201.0
+offset_top = 97.0
+offset_right = 984.0
+offset_bottom = 254.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.282353, 0.372549, 1, 1)
@@ -250,12 +251,13 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 406.0
 offset_top = 245.0
-offset_right = 747.0
-offset_bottom = 323.0
+offset_right = 779.0
+offset_bottom = 345.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("6_y1l8t")
 theme_override_fonts/font = ExtResource("1_d7tj8")
 theme_override_font_sizes/font_size = 60
 text = "T Start T"
@@ -271,9 +273,9 @@ text = "A game by EwileCoyote, Laaren, Makse and Owlycode"
 horizontal_alignment = 1
 
 [node name="Dash" type="TextureRect" parent="CanvasLayer"]
-offset_left = 1500.0
+offset_left = -1000.0
 offset_top = 317.0
-offset_right = 2407.0
+offset_right = -92.9998
 offset_bottom = 681.0
 texture = SubResource("GradientTexture2D_3nv4u")
 
