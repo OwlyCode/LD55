@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyl3trf73b6k"]
+[gd_scene load_steps=21 format=3 uid="uid://dyl3trf73b6k"]
 
 [ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="1_d7tj8"]
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_lq6ln"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bao1efl4asjum" path="res://assets/eclair.png" id="5_cc40w"]
 [ext_resource type="Texture2D" uid="uid://bn62wbpnkbjoc" path="res://assets/menu_right.png" id="5_e7bcy"]
 [ext_resource type="Theme" uid="uid://bg46tae7m2lwp" path="res://Menu.tres" id="6_y1l8t"]
+[ext_resource type="PackedScene" uid="uid://drohhex57k4yq" path="res://volume_control.tscn" id="8_kuye0"]
 [ext_resource type="AudioStream" uid="uid://drhrt01dqgeb8" path="res://Tonerre.ogg" id="8_uhhua"]
 
 [sub_resource type="Gradient" id="Gradient_yx1wt"]
@@ -214,10 +215,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 201.0
-offset_top = 97.0
-offset_right = 984.0
-offset_bottom = 254.0
+offset_left = 1353.0
+offset_top = 745.0
+offset_right = 2136.0
+offset_bottom = 902.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.282353, 0.372549, 1, 1)
@@ -288,6 +289,8 @@ offset_bottom = 544.0
 texture = ExtResource("4_5580k")
 expand_mode = 2
 stretch_mode = 4
+
+[node name="VolumeControl" parent="CanvasLayer" instance=ExtResource("8_kuye0")]
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 

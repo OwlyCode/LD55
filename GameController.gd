@@ -3,7 +3,7 @@ extends Node2D
 var levels = [
 	# preload ("res://levels/level_05_end_00.tscn"),
 	# Real tracklist
-	preload ("res://levels/level_01_move_00.tscn"),
+	# preload ("res://levels/level_01_move_00.tscn"),
 	# preload ("res://levels/level_01_move_01.tscn"),
 	# preload ("res://levels/level_01_move_02.tscn"),
 	# preload ("res://levels/level_02_dash_01.tscn"),

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dym2n4q33ht6y"]
+
+[ext_resource type="Texture2D" uid="uid://ck0ko551cmk6h" path="res://assets/green_smoke.png" id="1_txsxm"]
+[ext_resource type="Script" path="res://bullet_puffle.gd" id="2_7b6o3"]
+[ext_resource type="Texture2D" uid="uid://c7jgrbbnkoqpq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="3_6nhhk"]
+
+[sub_resource type="Gradient" id="Gradient_8d58v"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c1yh5"]
+blend_mode = 1
+
+[node name="SymbolPuffle" type="CPUParticles2D"]
+z_index = 1
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_txsxm")
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+scale_amount_min = 0.05
+scale_amount_max = 0.05
+color = Color(1, 0.0941176, 0.905882, 1)
+color_ramp = SubResource("Gradient_8d58v")
+script = ExtResource("2_7b6o3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0.878431, 0.454902)
+z_index = 1
+material = SubResource("CanvasItemMaterial_c1yh5")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_6nhhk")

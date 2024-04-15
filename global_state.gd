@@ -3,6 +3,9 @@ extends Node
 var total_time = 0.0
 var death_count = 0
 
+var _bus := AudioServer.get_bus_index("Master")
+var master_sound: float = db_to_linear(AudioServer.get_bus_volume_db(_bus))
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

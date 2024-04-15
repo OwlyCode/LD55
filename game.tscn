@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0bhst7mxaeo0"]
+[gd_scene load_steps=24 format=3 uid="uid://d0bhst7mxaeo0"]
 
 [ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="2_wp75t"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cu41uej4j3kdg" path="res://assets/ombre_ecran_de_loose.png" id="8_vvnix"]
 [ext_resource type="Script" path="res://Demon.gd" id="9_uixau"]
 [ext_resource type="AudioStream" uid="uid://b8ck1l4eklrfs" path="res://Demon_Released_5.ogg" id="11_cwk4i"]
+[ext_resource type="PackedScene" uid="uid://drohhex57k4yq" path="res://volume_control.tscn" id="11_ob4ou"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i0eo"]
 bg_color = Color(0, 0.486275, 0.6, 0.658824)
@@ -505,6 +506,8 @@ grow_horizontal = 2
 text = "Playing: Maske - Demon Washer"
 horizontal_alignment = 1
 visible_characters_behavior = 3
+
+[node name="VolumeControl" parent="UI" instance=ExtResource("11_ob4ou")]
 
 [node name="VictorySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_ebn7w")

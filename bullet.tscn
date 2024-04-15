@@ -9,8 +9,8 @@
 atlas = ExtResource("2_dxf7o")
 region = Rect2(129.736, 36.2955, 29.313, 19.4588)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w4i4c"]
-radius = 6.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qs3nk"]
+radius = 5.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o814r"]
 blend_mode = 1
@@ -19,6 +19,7 @@ blend_mode = 1
 position = Vector2(446, 382)
 collision_layer = 0
 motion_mode = 1
+safe_margin = 0.001
 script = ExtResource("1_wyptr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -26,8 +27,9 @@ rotation = 3.14159
 texture = SubResource("AtlasTexture_ilivf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, 1)
-shape = SubResource("CircleShape2D_w4i4c")
+position = Vector2(1, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qs3nk")
 
 [node name="Bounce" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_myjyq")
