@@ -1,5 +1,6 @@
 - PONDRE DES LEVELS
 - intégrer bouton
+- Random sur la première musique
 - CREDITS / FIN (écran victoire customisé pour la fin ?)
 - réglages sons
 

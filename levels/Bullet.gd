@@ -27,3 +27,7 @@ func _physics_process(delta):
 
 		if bounce_count < 0:
 			queue_free()
+
+func beat(beat_value):
+	$Light.scale.x = 0.2 + 0.4 * beat_value
+	$Light.scale.y = 0.1 + 0.4 * beat_value

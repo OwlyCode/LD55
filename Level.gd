@@ -67,3 +67,5 @@ func _process(delta):
 
 	if won and !was_won:
 		get_node("/root/Game/Hero").win()
+		for node in get_tree().get_nodes_in_group("player_moved"):
+			node.level_ended()

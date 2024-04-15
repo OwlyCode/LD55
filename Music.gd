@@ -1,9 +1,10 @@
 extends AudioStreamPlayer
 
 var playlist = [
+	["Aerodynamic Pointed Hat - Laaren", preload ("res://assets/playlist/Laaren_Aerodynamic_Pointed_Hat.ogg"), 1.0],
+	["Fortnite Dance On Your Grandmas Grave - Laaren", preload ("res://assets/playlist/Laaren_Fortnite_Dance_On_Your_Grandmas_Grave.ogg"), 1.5],
 	["Monster Washer - Makse", preload ("res://assets/playlist/Makse_Monster_washer.ogg"), 2.0],
 	["Demon Sealer - Laaren", preload ("res://assets/game_loop.mp3"), 1.0],
-	["Fortnite Dance On Your Grandmas Grave - Laaren", preload ("res://assets/playlist/Laaren_Fortnite_Dance_On_Your_Grandmas_Grave.ogg"), 3.0],
 ]
 
 var current_music = 0

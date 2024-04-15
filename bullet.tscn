@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bexdwwrdfhpg3"]
+[gd_scene load_steps=8 format=3 uid="uid://bexdwwrdfhpg3"]
 
 [ext_resource type="Script" path="res://levels/Bullet.gd" id="1_wyptr"]
 [ext_resource type="Texture2D" uid="uid://dlqxxmfic0gb2" path="res://assets/tileset2.png" id="2_dxf7o"]
 [ext_resource type="AudioStream" uid="uid://426oqi5bbt43" path="res://Rebond_Projectile.ogg" id="3_myjyq"]
+[ext_resource type="Texture2D" uid="uid://c7jgrbbnkoqpq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_hnsdl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ilivf"]
 atlas = ExtResource("2_dxf7o")
@@ -11,7 +12,10 @@ region = Rect2(129.736, 36.2955, 29.313, 19.4588)
 [sub_resource type="CircleShape2D" id="CircleShape2D_w4i4c"]
 radius = 6.0
 
-[node name="Bullet" type="CharacterBody2D" groups=["volatile"]]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o814r"]
+blend_mode = 1
+
+[node name="Bullet" type="CharacterBody2D" groups=["beat", "volatile"]]
 position = Vector2(446, 382)
 collision_layer = 0
 motion_mode = 1
@@ -27,3 +31,10 @@ shape = SubResource("CircleShape2D_w4i4c")
 
 [node name="Bounce" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_myjyq")
+
+[node name="Light" type="Sprite2D" parent="."]
+self_modulate = Color(0.541176, 0.172549, 0.521569, 1)
+material = SubResource("CanvasItemMaterial_o814r")
+position = Vector2(-1, 0)
+scale = Vector2(0.5, 0.3)
+texture = ExtResource("4_hnsdl")

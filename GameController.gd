@@ -1,6 +1,8 @@
 extends Node2D
 
 var levels = [
+	preload ("res://levels/level_03_turret_04.tscn"),
+	# Real tracklist
 	preload ("res://levels/level_01_move_00.tscn"),
 	preload ("res://levels/level_01_move_01.tscn"),
 	preload ("res://levels/level_01_move_02.tscn"),
@@ -10,7 +12,10 @@ var levels = [
 	preload ("res://levels/level_02_dash_04.tscn"),
 	preload ("res://levels/level_02_dash_05.tscn"),
 	preload ("res://levels/level_03_turret_01.tscn"),
+	preload ("res://levels/level_03_turret_01b.tscn"),
 	preload ("res://levels/level_03_turret_02.tscn"),
+	preload ("res://levels/level_03_turret_03.tscn"),
+	preload ("res://levels/level_03_turret_04.tscn"),
 	preload ("res://levels/level_04_portal_01.tscn"),
 	preload ("res://levels/level_04_portal_02.tscn"),
 	preload ("res://levels/level_04_portal_03.tscn"),
