@@ -16,7 +16,14 @@ func _ready():
 
 	var hero = get_node("/root/Game/Hero");
 
+	var middle = get_node_or_null("../Middle")
+
 	hero.position = get_node("../Spawn").position
+
+	if middle:
+		var camera = get_node("/root/Game/Camera2D")
+		hero.position += camera.position - middle.position
+
 	hero.alive = true
 	hero.iframe = 10
 	hero.won = false

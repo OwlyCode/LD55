@@ -1,7 +1,7 @@
 extends Node2D
 
 var levels = [
-	# preload ("res://levels/level_05_end_00.tscn"),
+	preload ("res://levels/level_05_end_02.tscn"),
 	# Real tracklist
 	# preload ("res://levels/level_01_move_00.tscn"),
 	# preload ("res://levels/level_01_move_01.tscn"),
@@ -79,6 +79,13 @@ func _process(delta):
 
 	if current_level_instance == null:
 		var instance = levels[current_level].instantiate()
+
+		var middle = instance.get_node_or_null("Middle")
+
+		if middle:
+			var camera = get_node("/root/Game/Camera2D")
+			instance.position = camera.position - middle.position
+
 		current_level_instance = instance
 		get_node("/root/Game").add_child(instance)
 
