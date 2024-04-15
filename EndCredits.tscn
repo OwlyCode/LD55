@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=3 uid="uid://b2ofb2qjgmhhx"]
+
+[ext_resource type="Texture2D" uid="uid://cxierplq0vxal" path="res://assets/menu_left.png" id="1_51lu3"]
+[ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="2_17x1f"]
+[ext_resource type="Script" path="res://credits.gd" id="3_n5xlq"]
+[ext_resource type="AudioStream" uid="uid://bgiclcq5t5s8a" path="res://End_of_time_menuFin.ogg" id="3_nht0l"]
+[ext_resource type="Script" path="res://menuback.gd" id="5_lhwun"]
+[ext_resource type="Texture2D" uid="uid://c7jgrbbnkoqpq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="6_phmng"]
+
+[sub_resource type="Curve" id="Curve_emetc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.547368, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.512432), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_eo15v"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_rpodv"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.40247, 0.854184, 1, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3sorp"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_afmcq"]
+blend_mode = 1
+
+[node name="EndCredits" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -242.0
+offset_top = 34.0
+offset_right = 1063.0
+offset_bottom = 1001.0
+texture = ExtResource("1_51lu3")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 238.0
+offset_top = 14.0
+offset_right = 1194.0
+offset_bottom = 271.0
+theme_override_colors/default_color = Color(0.356863, 0.356863, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_17x1f")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[wave][center]And remain sealed, you demOns![/center][/wave]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 444.0
+offset_top = 181.0
+offset_right = 991.0
+offset_bottom = 631.0
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[center][b]Visual art:[/b]
+EwileCoyote
+
+[b]Sound and music:[/b]
+[url=https://soundcloud.com/laarenprods]Laaren[/url]
+Makse
+
+[b]Programming:[/b]
+[url=https://twitter.com/OwlyCode]OwlyCode[/url]
+
+[b]Special thanks:[/b]
+Nyalab, Tilou, Twyn
+[/center]"
+script = ExtResource("3_n5xlq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nht0l")
+autoplay = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1023.0
+offset_top = 605.0
+offset_right = 1138.0
+offset_bottom = 636.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back to menu
+"
+script = ExtResource("5_lhwun")
+
+[node name="Node" type="Node2D" parent="."]
+position = Vector2(723, 328)
+scale = Vector2(10, 10)
+
+[node name="Particles" type="CPUParticles2D" parent="Node"]
+z_index = 1
+amount = 64
+emission_shape = 2
+emission_sphere_radius = 50.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.2
+orbit_velocity_max = 0.2
+radial_accel_min = -500.0
+radial_accel_max = -500.0
+scale_amount_min = 16.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_emetc")
+color_ramp = SubResource("Gradient_eo15v")
+color_initial_ramp = SubResource("Gradient_rpodv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node"]
+self_modulate = Color(0.054902, 0.576471, 1, 0.0980392)
+z_index = 1
+material = SubResource("CanvasItemMaterial_3sorp")
+texture = ExtResource("6_phmng")
+
+[node name="Flash" type="Sprite2D" parent="Node"]
+visible = false
+self_modulate = Color(0.360784, 0.717647, 1, 1)
+z_index = 20
+material = SubResource("CanvasItemMaterial_afmcq")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_phmng")
+
+[connection signal="meta_clicked" from="RichTextLabel2" to="RichTextLabel2" method="_on_meta_clicked"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

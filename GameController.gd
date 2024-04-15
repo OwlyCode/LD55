@@ -1,27 +1,27 @@
 extends Node2D
 
 var levels = [
-	preload ("res://levels/level_05_end_00.tscn"),
+	# preload ("res://levels/level_05_end_00.tscn"),
 	# Real tracklist
 	preload ("res://levels/level_01_move_00.tscn"),
-	preload ("res://levels/level_01_move_01.tscn"),
-	preload ("res://levels/level_01_move_02.tscn"),
-	preload ("res://levels/level_02_dash_01.tscn"),
-	preload ("res://levels/level_02_dash_03.tscn"),
-	preload ("res://levels/level_02_dash_04.tscn"),
-	preload ("res://levels/level_02_dash_05.tscn"),
-	preload ("res://levels/level_02_dash_06.tscn"),
-	preload ("res://levels/level_03_turret_01.tscn"),
-	preload ("res://levels/level_03_turret_01b.tscn"),
-	preload ("res://levels/level_03_turret_02.tscn"),
-	preload ("res://levels/level_03_turret_03.tscn"),
-	preload ("res://levels/level_03_turret_04.tscn"),
-	preload ("res://levels/level_03_turret_05.tscn"),
-	preload ("res://levels/level_04_portal_00.tscn"),
-	preload ("res://levels/level_04_portal_01.tscn"),
-	preload ("res://levels/level_04_portal_02.tscn"),
-	preload ("res://levels/level_04_portal_03.tscn"),
-	preload ("res://levels/level_05_end_00.tscn")
+	# preload ("res://levels/level_01_move_01.tscn"),
+	# preload ("res://levels/level_01_move_02.tscn"),
+	# preload ("res://levels/level_02_dash_01.tscn"),
+	# preload ("res://levels/level_02_dash_03.tscn"),
+	# preload ("res://levels/level_02_dash_04.tscn"),
+	# preload ("res://levels/level_02_dash_05.tscn"),
+	# preload ("res://levels/level_02_dash_06.tscn"),
+	# preload ("res://levels/level_03_turret_01.tscn"),
+	# preload ("res://levels/level_03_turret_01b.tscn"),
+	# preload ("res://levels/level_03_turret_02.tscn"),
+	# preload ("res://levels/level_03_turret_03.tscn"),
+	# preload ("res://levels/level_03_turret_04.tscn"),
+	# preload ("res://levels/level_03_turret_05.tscn"),
+	# preload ("res://levels/level_04_portal_00.tscn"),
+	# preload ("res://levels/level_04_portal_01.tscn"),
+	# preload ("res://levels/level_04_portal_02.tscn"),
+	# preload ("res://levels/level_04_portal_03.tscn"),
+	# preload ("res://levels/level_05_end_00.tscn")
 ]
 
 var current_level = 0;
@@ -62,11 +62,8 @@ func _process(_delta):
 		if tilemap.won:
 			if victory_screen.visible == false:
 				trigger_victory()
-			%VictoryButton.grab_focus();
 
 		elif tilemap.lost:
-			%DefeatButton.grab_focus();
-
 			if defeat_triggered == false:
 				defeat_triggered = true
 				if tilemap.lost_reason == "time_out":
@@ -107,7 +104,10 @@ func trigger_victory():
 
 func _on_next_level_pressed():
 	clear_level()
-	current_level = (current_level + 1) % len(levels)
+	current_level = current_level + 1
+
+	if current_level >= len(levels):
+		get_tree().change_scene_to_file("res://EndCredits.tscn")
 
 func _on_restart_level_pressed():
 	clear_level()
