@@ -24,7 +24,7 @@ func _process(delta):
 func _on_area_2d_body_entered(body: Node2D):
 	if body.is_in_group("hero"):
 		$Enter.play()
-		body.position = out.position
+		body.global_position = out.global_position
 
 		transiting = true
 

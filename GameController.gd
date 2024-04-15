@@ -1,7 +1,7 @@
 extends Node2D
 
 var levels = [
-	preload ("res://levels/level_05_end_02.tscn"),
+	preload ("res://levels/level_05_end_03.tscn"),
 	# Real tracklist
 	# preload ("res://levels/level_01_move_00.tscn"),
 	# preload ("res://levels/level_01_move_01.tscn"),
@@ -22,6 +22,8 @@ var levels = [
 	# preload ("res://levels/level_04_portal_02.tscn"),
 	# preload ("res://levels/level_04_portal_03.tscn"),
 	# preload ("res://levels/level_05_end_00.tscn")
+	preload ("res://levels/level_05_end_02.tscn"),
+	preload ("res://levels/level_05_end_03.tscn"),
 ]
 
 var current_level = 0;
@@ -48,6 +50,7 @@ var sentences_good = [
 var sentences_bad = [
 	"Meh. Global warming had doomed us already.",
     "Fly, you fools!",
+	"I'm too old for this seal.",
 ]
 
 # Called when the node enters the scene tree for the first time.

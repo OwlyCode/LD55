@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://biawlk00fqc5v"]
+[gd_scene load_steps=6 format=3 uid="uid://biawlk00fqc5v"]
 
 [ext_resource type="TileSet" uid="uid://cfelju4kn08np" path="res://tileset.tres" id="1_2y2py"]
 [ext_resource type="Script" path="res://Level.gd" id="2_q4lhk"]
+[ext_resource type="PackedScene" uid="uid://c66h7ubwwl2dd" path="res://turret.tscn" id="3_tpoeo"]
+[ext_resource type="PackedScene" uid="uid://cidu0qtuo1kfa" path="res://portal_in.tscn" id="4_aw24s"]
+[ext_resource type="PackedScene" uid="uid://hd6gf20htgn3" path="res://portal_out_dir.tscn" id="5_dxsdi"]
 
 [node name="Level" type="Node2D"]
 
@@ -16,10 +19,29 @@ layer_0/tile_data = PackedInt32Array(393218, 393218, 1, 458754, 393218, 1, 52429
 layer_1/name = "Paint"
 layer_1/tile_data = PackedInt32Array(786450, 458754, 7, 851986, 524290, 6, 917522, 393218, 7, 655379, 524290, 6, 589843, 393218, 7, 589844, 393218, 7, 524308, 393218, 6, 524307, 589826, 7, 655380, 589826, 7, 393234, 589826, 7, 327698, 458754, 7, 262162, 458754, 7)
 script = ExtResource("2_q4lhk")
-level_time = 8.0
+level_time = 12.0
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(126, 311)
 
 [node name="Middle" type="Node2D" parent="."]
 position = Vector2(464, 311)
+
+[node name="Turret" parent="." instance=ExtResource("3_tpoeo")]
+position = Vector2(310, 437)
+
+[node name="Turret2" parent="." instance=ExtResource("3_tpoeo")]
+position = Vector2(311, 181)
+
+[node name="PortalIn" parent="." node_paths=PackedStringArray("out") instance=ExtResource("4_aw24s")]
+position = Vector2(336, 310)
+out = NodePath("../PortalOut")
+
+[node name="PortalOut" parent="." instance=ExtResource("5_dxsdi")]
+position = Vector2(466, 311)
+
+[node name="Turret3" parent="." instance=ExtResource("3_tpoeo")]
+position = Vector2(441, 469)
+
+[node name="Turret4" parent="." instance=ExtResource("3_tpoeo")]
+position = Vector2(440, 152)
