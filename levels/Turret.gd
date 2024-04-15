@@ -9,6 +9,7 @@ enum FireMode {
 	SHOTGUN,
 	MINIGUN,
 	RAFALE,
+	BOSS,
 }
 
 @export var firemode: FireMode = FireMode.SHOTGUN
@@ -32,6 +33,8 @@ func _process(delta):
 			minigun()
 		if firemode == FireMode.RAFALE:
 			rafale()
+		if firemode == FireMode.BOSS:
+			boss()
 
 func shotgun():
 	cooldown = 3.0
@@ -80,3 +83,15 @@ func player_moved():
 
 func level_ended():
 	enabled = false
+
+func boss():
+	cooldown = 3.0
+	var amount = 12
+
+	for i in range(amount):
+		var angle = lerpf(0, 2 * PI, i as float / amount)
+		$Fire.play()
+		var a = Bullet.instantiate()
+		a.bounce_count = 0
+		a.start(global_position, angle)
+		get_tree().root.add_child(a)
