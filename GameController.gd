@@ -1,19 +1,19 @@
 extends Node2D
 
 var levels = [
-	preload ("res://levels/level_13.tscn"),
-	preload ("res://levels/level_12.tscn"),
-	preload ("res://levels/level_11.tscn"),
-	preload ("res://levels/level_10.tscn"),
-	preload ("res://levels/level_08.tscn"),
-	preload ("res://levels/level_07.tscn"),
-	preload ("res://levels/level_06.tscn"),
-	preload ("res://levels/level_05.tscn"),
-	preload ("res://levels/level_00.tscn"),
-	preload ("res://levels/level_02.tscn"),
-	preload ("res://levels/level_03.tscn"),
-	preload ("res://levels/level_01.tscn"),
-	preload ("res://levels/level_04.tscn"),
+	preload ("res://levels/level_01_move_00.tscn"),
+	preload ("res://levels/level_01_move_01.tscn"),
+	preload ("res://levels/level_01_move_02.tscn"),
+	preload ("res://levels/level_02_dash_01.tscn"),
+	preload ("res://levels/level_02_dash_02.tscn"),
+	preload ("res://levels/level_02_dash_03.tscn"),
+	preload ("res://levels/level_02_dash_04.tscn"),
+	preload ("res://levels/level_02_dash_05.tscn"),
+	preload ("res://levels/level_03_turret_01.tscn"),
+	preload ("res://levels/level_03_turret_02.tscn"),
+	preload ("res://levels/level_04_portal_01.tscn"),
+	preload ("res://levels/level_04_portal_02.tscn"),
+	preload ("res://levels/level_04_portal_03.tscn"),
 ]
 
 var current_level = 0;
