@@ -89,7 +89,21 @@ func _process(delta):
 	if current_level_instance == null:
 		var instance = levels[current_level].instantiate()
 
+		var hero = get_node("/root/Game/Hero");
+
 		var middle = instance.get_node_or_null("Middle")
+
+		hero.position = instance.get_node("Spawn").position
+
+		if middle:
+			var camera = get_node("/root/Game/Camera2D")
+			hero.position += camera.position - middle.position
+
+		hero.alive = true
+		hero.iframe = 10
+		hero.won = false
+		hero.visible = true
+		hero.freeze()
 
 		if middle:
 			var camera = get_node("/root/Game/Camera2D")

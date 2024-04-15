@@ -14,22 +14,6 @@ var started = false;
 func _ready():
 	time = level_time
 
-	var hero = get_node("/root/Game/Hero");
-
-	var middle = get_node_or_null("../Middle")
-
-	hero.position = get_node("../Spawn").position
-
-	if middle:
-		var camera = get_node("/root/Game/Camera2D")
-		hero.position += camera.position - middle.position
-
-	hero.alive = true
-	hero.iframe = 10
-	hero.won = false
-	hero.visible = true
-	hero.freeze()
-
 	for x in self.get_used_cells(1):
 
 		var coords = map_to_local(x)
