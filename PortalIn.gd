@@ -9,7 +9,7 @@ const LINE_SIZE = 10.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(LINE_SIZE):
-		points.push_back(to_local(position.lerp(out.position, i / LINE_SIZE)))
+		points.push_back(to_local(global_position.lerp(out.global_position, i / LINE_SIZE)))
 
 		#$Line2D.add_point(to_local(position.lerp(out.position, i / LINE_SIZE)))
 

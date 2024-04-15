@@ -14,7 +14,7 @@ func _process(_delta):
 		$AudioStreamPlayer.play()
 		popped = true
 		var puffle = Puffle.instantiate();
-		puffle.position = position;
+		puffle.global_position = global_position;
 		get_tree().root.add_child(puffle)
 
 		var coords = tilemap.local_to_map(position)

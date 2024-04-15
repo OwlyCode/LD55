@@ -38,6 +38,6 @@ func beat(beat_value):
 
 func puff():
 	var puffle = Puffle.instantiate()
-	puffle.position = position
+	puffle.global_position = global_position
 	puffle.emitting = true
 	get_tree().root.add_child(puffle)

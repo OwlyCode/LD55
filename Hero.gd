@@ -45,7 +45,7 @@ func _process(delta):
 		if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT]:
 			var puffle = Puffle.instantiate()
 			get_tree().root.add_child(puffle)
-			puffle.position = position
+			puffle.global_position = global_position
 
 	# $DriftSmoke.emitting = dash_status == DashStatus.DRIFTING and (last_position.distance_to(position) > 5.0 * delta)
 

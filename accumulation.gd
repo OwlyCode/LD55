@@ -42,7 +42,7 @@ func _process(delta):
 			flash = 0.05
 			flashed = true
 			var puffle = Puffle.instantiate()
-			puffle.position = position
+			puffle.global_position = global_position
 			get_tree().root.add_child(puffle)
 			get_node("/root/Game/Hero").visible = false
 			transiting = true
