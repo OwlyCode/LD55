@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk02xnbdnp6xr"]
+[gd_scene load_steps=7 format=3 uid="uid://bk02xnbdnp6xr"]
 
 [ext_resource type="Script" path="res://Detector.gd" id="1_fy03w"]
 [ext_resource type="AudioStream" uid="uid://bih7lo8si5au0" path="res://Symbole_efface_ogg.ogg" id="2_gweq6"]
 [ext_resource type="Texture2D" uid="uid://c7jgrbbnkoqpq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="3_p7a3m"]
+[ext_resource type="Texture2D" uid="uid://ci8mw6nqi1flf" path="res://assets/active_symbol.png" id="4_6imji"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8aubk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1uyo5"]
 blend_mode = 1
 
-[node name="Detector" type="Area2D" groups=["beat"]]
+[node name="Detector" type="Area2D" groups=["beat", "ritual"]]
 position = Vector2(201, 264)
 collision_layer = 0
 collision_mask = 2
@@ -26,3 +27,7 @@ modulate = Color(0.164706, 1, 0.333333, 0.152941)
 material = SubResource("CanvasItemMaterial_1uyo5")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_p7a3m")
+
+[node name="Active" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_6imji")

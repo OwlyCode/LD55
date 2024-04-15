@@ -48,6 +48,9 @@ func _process(delta):
 		time = 0.0
 		hero.alive = false
 
+		for node in get_tree().get_nodes_in_group("ritual"):
+			node.ritual()
+
 	if get_node("/root/Game/Hero").velocity != Vector2.ZERO:
 		started = true
 

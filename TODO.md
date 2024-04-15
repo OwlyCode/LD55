@@ -1,5 +1,3 @@
-- Animation de time out: feu
-
 - PONDRE DES LEVELS
 - CREDITS / FIN (écran victoire customisé pour la fin ?)
 - réglages sons
