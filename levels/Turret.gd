@@ -51,11 +51,11 @@ func shotgun():
 	get_tree().root.add_child(c)
 
 func minigun():
-	cooldown = 0.25
+	cooldown = 0.4
 	$Fire.play()
 
 	var a = Bullet.instantiate()
-	a.speed = 500.0
+	a.speed = 250.0
 	a.start(global_position, rotation)
 	get_tree().root.add_child(a)
 
