@@ -18,6 +18,8 @@ var hide_music_name = 3.0
 var spectrum
 
 func _ready():
+	current_music = randi() % len(playlist)
+
 	spectrum = AudioServer.get_bus_effect_instance(1, 0)
 	stream = playlist[current_music][1]
 	%SongDisplay.text = "Now playing: " + playlist[current_music][0]

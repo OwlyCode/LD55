@@ -18,7 +18,7 @@ layer_0/tile_data = PackedInt32Array(327686, 393218, 1, 393222, 393218, 1, 45875
 layer_1/name = "Paint"
 layer_1/tile_data = PackedInt32Array(655371, 393218, 6, 655373, 393218, 6, 655372, 524290, 6, 720908, 393218, 6, 720909, 458754, 6, 720907, 458754, 6)
 script = ExtResource("2_mxr87")
-level_time = 5.0
+level_time = 10.0
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(394, 435)

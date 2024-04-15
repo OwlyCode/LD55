@@ -1,5 +1,4 @@
 - PONDRE DES LEVELS
-    - full symbols
 
 - intégrer bouton
 - Random sur la première musique

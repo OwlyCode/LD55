@@ -1,36 +1,36 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwa657q7x02j1"]
 
-[ext_resource type="TileSet" uid="uid://cfelju4kn08np" path="res://tileset.tres" id="1_tg3s7"]
-[ext_resource type="Script" path="res://Level.gd" id="2_i7s8s"]
-[ext_resource type="PackedScene" uid="uid://cidu0qtuo1kfa" path="res://portal_in.tscn" id="3_6u4ax"]
-[ext_resource type="PackedScene" uid="uid://hd6gf20htgn3" path="res://portal_out_dir.tscn" id="4_dkkkp"]
+[ext_resource type="TileSet" uid="uid://cfelju4kn08np" path="res://tileset.tres" id="1_f3iqi"]
+[ext_resource type="Script" path="res://Level.gd" id="2_uyd81"]
+[ext_resource type="PackedScene" uid="uid://cidu0qtuo1kfa" path="res://portal_in.tscn" id="3_kpj77"]
+[ext_resource type="PackedScene" uid="uid://hd6gf20htgn3" path="res://portal_out_dir.tscn" id="4_lwndt"]
 
 [node name="Level" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
 position = Vector2(1, 6)
-tile_set = ExtResource("1_tg3s7")
+tile_set = ExtResource("1_f3iqi")
 rendering_quadrant_size = 32
 format = 2
 layer_0/name = "Ground"
 layer_0/tile_data = PackedInt32Array(1179657, 393218, 1, 1179658, 393218, 1, 1179659, 393218, 1, 1179660, 393218, 1, 1179661, 393218, 1, 1179662, 393218, 1, 1179663, 393218, 1, 1179664, 393218, 1, 393222, 393218, 1, 458758, 393218, 1, 524294, 393218, 1, 589830, 393218, 1, 655366, 393218, 1, 720902, 393218, 1, 786438, 393218, 1, 851974, 393218, 1, 917510, 393218, 1, 983046, 393218, 1, 1048582, 393218, 1, 1114118, 393218, 1, 1179654, 393218, 1, 1179655, 393218, 1, 1179656, 393218, 1, 1179665, 393218, 1, 1179666, 393218, 1, 327686, 393218, 1, 327687, 393218, 1, 327688, 393218, 1, 327689, 393218, 1, 327690, 393218, 1, 327691, 393218, 1, 327692, 393218, 1, 327693, 393218, 1, 327694, 393218, 1, 327695, 393218, 1, 327696, 393218, 1, 327697, 393218, 1, 327698, 393218, 1, 983051, 393218, 3, 1048587, 393218, 3, 1114123, 393218, 3, 983052, 393218, 3, 1048588, 393218, 3, 1114124, 393218, 3, 983053, 393218, 3, 1048589, 393218, 3, 1114125, 393218, 3, 1114130, 393218, 1, 1048594, 393218, 1, 983058, 393218, 1, 917522, 393218, 1, 851986, 393218, 1, 786450, 393218, 1, 720914, 393218, 1, 655378, 393218, 1, 393234, 393218, 1, 524306, 393218, 1, 458770, 393218, 1, 589842, 393218, 1, 786443, 393218, 1, 786445, 393218, 1, 786444, 393218, 3, 655371, 393218, 3, 589835, 393218, 3, 524299, 393218, 3, 524300, 393218, 3, 524301, 393218, 3, 589837, 393218, 3, 655373, 393218, 3, 655372, 393218, 3, 589836, 393218, 3, 655369, 393218, 1, 524297, 393218, 1, 655375, 393218, 1, 524303, 393218, 1, 589839, 393218, 3, 589833, 393218, 3, 524295, 393218, 3, 589831, 393218, 3, 655367, 393218, 3, 655368, 393218, 3, 589832, 393218, 3, 524296, 393218, 3, 655376, 393218, 3, 589840, 393218, 3, 524304, 393218, 3, 524305, 393218, 3, 589841, 393218, 3, 655377, 393218, 3, 851978, 393218, 1, 917513, 393218, 1, 983048, 393218, 1, 1048583, 393218, 1, 851982, 393218, 1, 917519, 393218, 1, 983056, 393218, 1, 1048593, 393218, 1, 458761, 393218, 1, 393225, 393218, 1, 720905, 393218, 1, 786441, 393218, 1, 851977, 393218, 1, 851983, 393218, 1, 786447, 393218, 1, 720911, 393218, 1, 393231, 393218, 1, 458767, 393218, 1)
 layer_1/name = "Paint"
 layer_1/tile_data = PackedInt32Array(786444, 524290, 6, 589839, 524290, 6, 589833, 524290, 6, 589832, 589826, 7, 589840, 589826, 7, 655371, 393218, 7, 589836, 524290, 7, 524299, 393218, 7, 524301, 393218, 7, 655373, 393218, 7)
-script = ExtResource("2_i7s8s")
-level_time = 8.0
+script = ExtResource("2_uyd81")
+level_time = 12.0
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(402, 503)
 
-[node name="PortalIn" parent="." node_paths=PackedStringArray("out") instance=ExtResource("3_6u4ax")]
+[node name="PortalIn" parent="." node_paths=PackedStringArray("out") instance=ExtResource("3_kpj77")]
 position = Vector2(559, 310)
 out = NodePath("../PortalOut")
 
-[node name="PortalIn2" parent="." node_paths=PackedStringArray("out") instance=ExtResource("3_6u4ax")]
+[node name="PortalIn2" parent="." node_paths=PackedStringArray("out") instance=ExtResource("3_kpj77")]
 position = Vector2(239, 308)
 out = NodePath("../PortalOut")
 
-[node name="PortalOut" parent="." instance=ExtResource("4_dkkkp")]
+[node name="PortalOut" parent="." instance=ExtResource("4_lwndt")]
 position = Vector2(400, 566)
 rotation = -1.5708

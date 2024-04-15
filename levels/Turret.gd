@@ -67,7 +67,7 @@ func rafale():
 		rafale_count += 1
 	else:
 		rafale_count = 0
-		cooldown = 3.0
+		cooldown = 2.0
 
 	$Fire.play()
 	var a = Bullet.instantiate()
