@@ -1,6 +1,15 @@
 extends Node2D
 
 var levels = [
+	preload ("res://levels/level_13.tscn"),
+	preload ("res://levels/level_12.tscn"),
+	preload ("res://levels/level_11.tscn"),
+	preload ("res://levels/level_10.tscn"),
+	preload ("res://levels/level_08.tscn"),
+	preload ("res://levels/level_07.tscn"),
+	preload ("res://levels/level_06.tscn"),
+	preload ("res://levels/level_05.tscn"),
+	preload ("res://levels/level_00.tscn"),
 	preload ("res://levels/level_02.tscn"),
 	preload ("res://levels/level_03.tscn"),
 	preload ("res://levels/level_01.tscn"),

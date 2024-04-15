@@ -93,6 +93,7 @@ func _physics_process(delta):
 
 	if dash_status not in [DashStatus.DASHING, DashStatus.DASH_EXIT] and alive and !won:
 		direction = Input.get_vector("left", "right", "up", "down")
+
 		velocity = (direction * MOVE_SPEED) * delta + drift
 
 	# DRIFT

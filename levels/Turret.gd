@@ -1,10 +1,16 @@
 extends Node2D
 
-const FIRERATE = 3.0;
-
-var cooldown = 2.0;
+@export var cooldown = 0.0;
+var enabled = false;
 
 var Bullet = preload ("res://bullet.tscn")
+
+enum FireMode {
+	SHOTGUN,
+	MINIGUN,
+}
+
+@export var firemode: FireMode = FireMode.SHOTGUN
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,13 +21,18 @@ func _process(delta):
 
 	look_at(hero.position)
 
-	cooldown -= delta
+	if enabled:
+		cooldown -= delta
 
-	if cooldown < 0:
-		cooldown = FIRERATE
-		shoot()
+	if enabled and cooldown < 0:
+		if firemode == FireMode.SHOTGUN:
+			shotgun()
+		if firemode == FireMode.MINIGUN:
+			minigun()
 
-func shoot():
+func shotgun():
+	cooldown = 3.0
+
 	$Fire.play()
 	var a = Bullet.instantiate()
 	a.start(global_position, rotation + 0.25)
@@ -35,3 +46,18 @@ func shoot():
 	get_tree().root.add_child(a)
 	get_tree().root.add_child(b)
 	get_tree().root.add_child(c)
+
+func minigun():
+	cooldown = 0.25
+	$Fire.play()
+
+	var a = Bullet.instantiate()
+	a.speed = 500.0
+	a.start(global_position, rotation)
+	get_tree().root.add_child(a)
+
+func player_moved():
+	enabled = true
+
+func level_ended():
+	enabled = false

@@ -38,6 +38,8 @@ func _process(delta):
 	if !hero.alive:
 		lost_reason = hero.death_reason
 		lost = true
+		for node in get_tree().get_nodes_in_group("player_moved"):
+			node.level_ended()
 
 	if !won and !lost and started:
 		time -= delta;
@@ -52,6 +54,10 @@ func _process(delta):
 			node.ritual()
 
 	if get_node("/root/Game/Hero").velocity != Vector2.ZERO:
+		if !started:
+			for node in get_tree().get_nodes_in_group("player_moved"):
+				node.player_moved()
+
 		started = true
 
 	var was_won = won

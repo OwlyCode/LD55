@@ -427,7 +427,6 @@ stream = ExtResource("8_ebn7w")
 
 [node name="DefeatSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_cwk4i")
-volume_db = -10.0
 
 [node name="TimeoutPlayer" type="AnimationPlayer" parent="."]
 libraries = {

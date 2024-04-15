@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b6il23w3bpjpx" path="res://assets/cultist.png" id="2_7e6qy"]
 [ext_resource type="AudioStream" uid="uid://3uwmp6m8uvww" path="res://Tir_Projectile_2.ogg" id="3_ma2my"]
 
-[node name="Turret" type="Node2D"]
-position = Vector2(418, 383)
+[node name="Turret" type="Node2D" groups=["player_moved"]]
 script = ExtResource("1_lxe7x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

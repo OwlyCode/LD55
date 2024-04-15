@@ -1,8 +1,8 @@
 extends AudioStreamPlayer
 
 var playlist = [
-	["Demon Sealer - Laaren", preload ("res://assets/game_loop.mp3"), 1.0],
 	["Monster Washer - Makse", preload ("res://assets/playlist/Makse_Monster_washer.ogg"), 2.0],
+	["Demon Sealer - Laaren", preload ("res://assets/game_loop.mp3"), 1.0],
 	["Fortnite Dance On Your Grandmas Grave - Laaren", preload ("res://assets/playlist/Laaren_Fortnite_Dance_On_Your_Grandmas_Grave.ogg"), 3.0],
 ]
 
