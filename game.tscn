@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d0bhst7mxaeo0"]
+[gd_scene load_steps=26 format=3 uid="uid://d0bhst7mxaeo0"]
 
 [ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="2_wp75t"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bkfl0spl1gb6c" path="res://assets/victory.wav" id="8_ebn7w"]
 [ext_resource type="Texture2D" uid="uid://cu41uej4j3kdg" path="res://assets/ombre_ecran_de_loose.png" id="8_vvnix"]
 [ext_resource type="Script" path="res://Demon.gd" id="9_uixau"]
+[ext_resource type="Script" path="res://SongDisplay.gd" id="10_s13go"]
 [ext_resource type="AudioStream" uid="uid://b8ck1l4eklrfs" path="res://Demon_Released_5.ogg" id="11_cwk4i"]
 [ext_resource type="PackedScene" uid="uid://drohhex57k4yq" path="res://volume_control.tscn" id="11_ob4ou"]
 [ext_resource type="Script" path="res://LeftBeat.gd" id="13_1mrah"]
@@ -490,7 +491,7 @@ theme_override_fonts/font = ExtResource("6_gg3qu")
 theme_override_font_sizes/font_size = 160
 text = "00:00"
 
-[node name="SongDisplay" type="Label" parent="UI" groups=["song_display"]]
+[node name="SongDisplay" type="Label" parent="UI" groups=["beat", "song_display"]]
 unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -502,6 +503,7 @@ grow_horizontal = 2
 text = "Playing: Maske - Demon Washer"
 horizontal_alignment = 1
 visible_characters_behavior = 3
+script = ExtResource("10_s13go")
 
 [node name="VolumeControl" parent="UI" instance=ExtResource("11_ob4ou")]
 

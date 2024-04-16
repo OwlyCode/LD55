@@ -98,7 +98,6 @@ func _process(delta):
 			hero.position += camera.position - middle.position
 
 		hero.alive = true
-		hero.iframe = 30
 		hero.won = false
 		hero.visible = true
 		hero.freeze()

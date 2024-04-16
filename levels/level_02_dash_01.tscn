@@ -28,7 +28,7 @@ offset_bottom = 250.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 bbcode_enabled = true
-text = "[center]Use [color=yellow]space[/color] / [color=yellow]left joystick[/color] to dash! 
+text = "[center]Use [color=yellow]space[/color] / [color=yellow]Xbox A[/color] / [color=yellow]Sony cross[/color] to dash! 
 Maintain pressed to dash even further![/center]"
 
 [node name="Middle" type="Node2D" parent="."]

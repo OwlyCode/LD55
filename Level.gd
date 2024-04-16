@@ -44,8 +44,7 @@ func _process(delta):
 		time = 0.0
 		hero.alive = false
 
-		for node in get_tree().get_nodes_in_group("ritual"):
-			node.ritual()
+		get_tree().call_group("ritual", "ritual")
 
 	if len(self.get_used_cells(1)) == 0:
 		game_state = GlobalState.GameState.WON

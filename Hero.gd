@@ -7,7 +7,6 @@ var Accumulator = preload ("res://accumulation.tscn")
 const SHADOW_DELAY = 0.05
 
 var shadow_delay_current = SHADOW_DELAY;
-var iframe = 30
 var dash_asked = false
 
 var drift = Vector2.ZERO
@@ -70,14 +69,9 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.play("idle")
 
-	if iframe == 0 and !$Grounded.has_overlapping_bodies() and dash_status in [DashStatus.NONE, DashStatus.DRIFTING]:
+	if moved and !$Grounded.has_overlapping_bodies() and dash_status in [DashStatus.NONE, DashStatus.DRIFTING]:
 		alive = false
 		death_reason = "fall"
-
-	iframe -= 1
-
-	if iframe < 0:
-		iframe = 0
 
 func freeze():
 	velocity = Vector2.ZERO
@@ -86,7 +80,7 @@ func freeze():
 	dash_status = DashStatus.NONE
 
 func _physics_process(delta):
-	if !moved and velocity != Vector2.ZERO:
+	if !moved and velocity != Vector2.ZERO and $Grounded.has_overlapping_bodies():
 		get_tree().call_group("player_moved", "player_moved")
 		moved = true
 

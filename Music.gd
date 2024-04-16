@@ -23,17 +23,14 @@ func launch():
 
 	spectrum = AudioServer.get_bus_effect_instance(1, 0)
 	stream = playlist[current_music][1]
-
-	get_tree().call_group("song_display", "set_now_playing", playlist[current_music][0])
-	get_tree().call_group("song_display", "set_visible_ratio", 0)
+	GlobalState.now_playing = playlist[current_music][0]
 
 	play()
 
 func _on_finished():
 	current_music = (current_music + 1) % len(playlist)
 	stream = playlist[current_music][1]
-
-	get_tree().call_group("song_display", "set_now_playing", playlist[current_music][0])
+	GlobalState.now_playing = playlist[current_music][0]
 
 	hide_music_name = 3.0
 	play()
