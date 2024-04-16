@@ -22,9 +22,9 @@ position = Vector2(418, 353)
 
 [node name="Label" type="RichTextLabel" parent="."]
 offset_left = 118.0
-offset_top = 189.0
+offset_top = 213.0
 offset_right = 731.0
-offset_bottom = 264.0
+offset_bottom = 288.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 bbcode_enabled = true

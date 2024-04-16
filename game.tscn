@@ -241,8 +241,6 @@ gradient = SubResource("Gradient_pw8pf")
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5damq")
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_377vo")]
-
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 position = Vector2(424, 390)
 zoom = Vector2(1.2, 1.2)
@@ -531,6 +529,8 @@ texture = SubResource("GradientTexture2D_30l41")
 position = Vector2(0, -8)
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_30l41")
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_377vo")]
 
 [connection signal="pressed" from="UI/Victory/VBoxContainer/HFlowContainer/VictoryButton" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="UI/Victory/VBoxContainer/HFlowContainer/ReplayButton" to="." method="_on_restart_level_pressed"]
