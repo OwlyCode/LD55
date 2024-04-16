@@ -22,3 +22,5 @@ func _process(delta):
 
 func score():
 	return ceil(2000.0 - total_time - death_count * 5.0) as int
+
+enum GameState {IDLE, STARTED, LOST, WON}

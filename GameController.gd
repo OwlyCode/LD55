@@ -54,7 +54,7 @@ var sentences_good = [
 
 var sentences_bad = [
 	"Meh. Global warming had doomed us already.",
-    "Fly, you fools!",
+	"Fly, you fools!",
 	"I'm too old for this seal.",
 ]
 
@@ -68,11 +68,11 @@ func _process(delta):
 	if current_level_instance != null:
 		var tilemap = current_level_instance.get_node("TileMap")
 
-		if tilemap.won:
+		if tilemap.game_state == GlobalState.GameState.WON:
 			if victory_screen.visible == false:
 				trigger_victory()
 
-		elif tilemap.lost:
+		elif tilemap.game_state == GlobalState.GameState.LOST:
 			if defeat_triggered == false:
 				GlobalState.death_count += 1
 				defeat_triggered = true

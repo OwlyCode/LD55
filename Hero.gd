@@ -14,6 +14,7 @@ var drift = Vector2.ZERO
 var drift_direction = Vector2.ZERO
 var direction = Vector2.ZERO
 var alive = true
+var moved = false
 var death_reason
 
 enum DashStatus {DASHING, DASH_EXIT, DRIFTING, NONE}
@@ -85,6 +86,10 @@ func freeze():
 	dash_status = DashStatus.NONE
 
 func _physics_process(delta):
+	if !moved and velocity != Vector2.ZERO:
+		get_tree().call_group("player_moved", "player_moved")
+		moved = true
+
 	if !alive or won:
 		velocity = Vector2.ZERO
 		direction = Vector2.ZERO

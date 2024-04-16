@@ -5,7 +5,7 @@
 
 [node name="Level" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["player_moved"]]
 texture_filter = 1
 tile_set = ExtResource("1_tia7l")
 rendering_quadrant_size = 32

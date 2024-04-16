@@ -5,11 +5,9 @@ var detector = preload ("res://detector.tscn")
 @export var level_time = 20.0
 
 var time = 0.0;
-var won = false
-var lost = false
 var lost_reason
 
-var started = false;
+var game_state
 
 func _ready():
 	time = level_time
@@ -23,43 +21,33 @@ func _ready():
 		instance.position = coords
 		instance.tilemap = self
 
+func player_moved():
+	game_state = GlobalState.GameState.STARTED
+
 func _process(delta):
-	if won or lost:
+	if game_state in [GlobalState.GameState.LOST, GlobalState.GameState.WON, GlobalState.GameState.IDLE]:
 		return
 
 	var hero = get_node("/root/Game/Hero");
 
 	if !hero.alive:
 		lost_reason = hero.death_reason
-		lost = true
-		for node in get_tree().get_nodes_in_group("player_moved"):
-			node.level_ended()
+		game_state = GlobalState.GameState.LOST
+		get_tree().call_group("player_moved", "level_ended")
 
-	if !won and !lost and started:
+	if game_state == GlobalState.GameState.STARTED:
 		time -= delta;
 
 	if time < 0:
 		lost_reason = "time_out"
-		lost = true
+		game_state = GlobalState.GameState.LOST
 		time = 0.0
 		hero.alive = false
 
 		for node in get_tree().get_nodes_in_group("ritual"):
 			node.ritual()
 
-	if get_node("/root/Game/Hero").velocity != Vector2.ZERO:
-		if !started:
-			for node in get_tree().get_nodes_in_group("player_moved"):
-				node.player_moved()
-
-		started = true
-
-	var was_won = won
-
-	if !lost:
-		won = len(self.get_used_cells(1)) == 0
-
-	if won and !was_won:
+	if len(self.get_used_cells(1)) == 0:
+		game_state = GlobalState.GameState.WON
+		get_tree().call_group("player_moved", "level_ended")
 		get_node("/root/Game/Hero").win()
-		for node in get_tree().get_nodes_in_group("player_moved"):
-			node.level_ended()

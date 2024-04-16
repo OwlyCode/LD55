@@ -7,7 +7,7 @@
 
 [node name="Level" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["player_moved"]]
 texture_filter = 1
 position = Vector2(-6, 4)
 tile_set = ExtResource("1_sh6ka")
