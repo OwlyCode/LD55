@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://d0bhst7mxaeo0"]
+[gd_scene load_steps=25 format=3 uid="uid://d0bhst7mxaeo0"]
 
 [ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="2_wp75t"]
-[ext_resource type="PackedScene" uid="uid://bl7lwesqvqx61" path="res://game_music.tscn" id="3_377vo"]
 [ext_resource type="Script" path="res://TimeDisplay.gd" id="4_dm4ck"]
 [ext_resource type="PackedScene" uid="uid://b4q3avdlmjiq4" path="res://assets/hero.tscn" id="5_4gm1s"]
 [ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="6_gg3qu"]
@@ -13,6 +12,8 @@
 [ext_resource type="Script" path="res://Demon.gd" id="9_uixau"]
 [ext_resource type="AudioStream" uid="uid://b8ck1l4eklrfs" path="res://Demon_Released_5.ogg" id="11_cwk4i"]
 [ext_resource type="PackedScene" uid="uid://drohhex57k4yq" path="res://volume_control.tscn" id="11_ob4ou"]
+[ext_resource type="Script" path="res://LeftBeat.gd" id="13_1mrah"]
+[ext_resource type="Script" path="res://RightBeat.gd" id="14_q6lqe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i0eo"]
 bg_color = Color(0, 0.486275, 0.6, 0.658824)
@@ -489,7 +490,7 @@ theme_override_fonts/font = ExtResource("6_gg3qu")
 theme_override_font_sizes/font_size = 160
 text = "00:00"
 
-[node name="SongDisplay" type="Label" parent="UI"]
+[node name="SongDisplay" type="Label" parent="UI" groups=["song_display"]]
 unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -520,17 +521,17 @@ position = Vector2(550, 305)
 rotation = 1.5708
 scale = Vector2(11.8738, 20)
 
-[node name="Left" type="Sprite2D" parent="Visualizer"]
+[node name="Left" type="Sprite2D" parent="Visualizer" groups=["beat"]]
 position = Vector2(0, 20)
 rotation = 1.5708
 texture = SubResource("GradientTexture2D_30l41")
+script = ExtResource("13_1mrah")
 
-[node name="Right" type="Sprite2D" parent="Visualizer"]
+[node name="Right" type="Sprite2D" parent="Visualizer" groups=["beat"]]
 position = Vector2(0, -8)
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_30l41")
-
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_377vo")]
+script = ExtResource("14_q6lqe")
 
 [connection signal="pressed" from="UI/Victory/VBoxContainer/HFlowContainer/VictoryButton" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="UI/Victory/VBoxContainer/HFlowContainer/ReplayButton" to="." method="_on_restart_level_pressed"]

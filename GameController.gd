@@ -32,7 +32,6 @@ var levels = [
 	preload ("res://levels/level_05_end_final.tscn"),
 ]
 
-var current_level = 0;
 var current_level_instance = null;
 
 var victory_screen: Node;
@@ -86,7 +85,7 @@ func _process(delta):
 					get_node("Hero/AnimationPlayer").play("fall")
 
 	if current_level_instance == null:
-		var instance = levels[current_level].instantiate()
+		var instance = levels[GlobalState.current_level].instantiate()
 
 		var hero = get_node("/root/Game/Hero");
 
@@ -154,15 +153,16 @@ func trigger_victory():
 
 func _on_next_level_pressed():
 	GlobalState.total_time += current_level_time
-	clear_level()
-	current_level = current_level + 1
+	GlobalState.current_level = GlobalState.current_level + 1
 
-	if current_level >= len(levels):
+	if GlobalState.current_level >= len(levels):
+		GlobalState.music.stop_music()
 		get_tree().change_scene_to_file("res://EndCredits.tscn")
+	else:
+		clear_level()
 
 func _on_restart_level_pressed():
 	clear_level()
-	get_node("Hero/AnimationPlayer").play("idle")
 
 func demon_released():
 	get_node("/root/Game/DefeatSound").play()
@@ -170,18 +170,5 @@ func demon_released():
 func demon_sealed():
 	get_node("/root/Game/VictorySound").play()
 
-func preclear_level():
-	for node in get_tree().get_nodes_in_group("volatile"):
-		node.queue_free()
-
 func clear_level():
-	current_level_time = 0.0
-
-	defeat_triggered = false
-	for node in get_tree().get_nodes_in_group("volatile"):
-		node.queue_free()
-
-	current_level_instance.queue_free()
-	victory_screen.visible = false;
-	defeat_screen.visible = false;
-	get_node("UI/Time").visible = true
+	get_tree().change_scene_to_file("res://game.tscn")
