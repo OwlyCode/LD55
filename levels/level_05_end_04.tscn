@@ -63,3 +63,6 @@ rotation = 1.5708
 [node name="Out6" parent="." instance=ExtResource("5_m5og6")]
 position = Vector2(787, 436)
 rotation = -1.5708
+
+[node name="Middle2" type="Node2D" parent="."]
+position = Vector2(466, 296)

@@ -24,3 +24,6 @@ position = Vector2(640, 384)
 [node name="Turret" parent="." instance=ExtResource("3_436ia")]
 position = Vector2(267, 383)
 firemode = 2
+
+[node name="Middle" type="Node2D" parent="."]
+position = Vector2(368, 381)

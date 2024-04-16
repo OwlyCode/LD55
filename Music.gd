@@ -58,10 +58,10 @@ func _process(delta):
 
 	var magnitude = [
 		spectrum.get_magnitude_for_frequency_range(40, 100).length(),
-		spectrum.get_magnitude_for_frequency_range(500, 1000).length(),
-		spectrum.get_magnitude_for_frequency_range(1000, 1500).length(),
-		spectrum.get_magnitude_for_frequency_range(1500, 2000).length(),
-		spectrum.get_magnitude_for_frequency_range(2000, 2500).length()
+		# spectrum.get_magnitude_for_frequency_range(500, 1000).length(),
+		# spectrum.get_magnitude_for_frequency_range(1000, 1500).length(),
+		# spectrum.get_magnitude_for_frequency_range(1500, 2000).length(),
+		# spectrum.get_magnitude_for_frequency_range(2000, 2500).length()
 	];
 
 	samples.push_back(magnitude[0] / 0.01)
@@ -71,8 +71,8 @@ func _process(delta):
 
 	var beat_value = (samples.reduce(sum, 0) / len(samples)) / 12.0 * playlist[current_music][2];
 
-	get_node("/root/Game/Visualizer/Left").position.y = 30 - beat_value * 30.0
-	get_node("/root/Game/Visualizer/Right").position.y = -20 + beat_value * 30.0
+	get_node("/root/Game/Visualizer/Left").position.y = 24 - beat_value * 30.0
+	get_node("/root/Game/Visualizer/Right").position.y = -12 + beat_value * 30.0
 
 	for node in get_tree().get_nodes_in_group("beat"):
 		node.beat(beat_value)

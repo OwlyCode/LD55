@@ -25,7 +25,7 @@ level_time = 18.0
 position = Vector2(454, 295)
 
 [node name="Middle" type="Node2D" parent="."]
-position = Vector2(464, 311)
+position = Vector2(451, 295)
 
 [node name="OutMiddle" parent="." instance=ExtResource("5_0j5n5")]
 position = Vector2(449, 295)

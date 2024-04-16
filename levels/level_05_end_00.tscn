@@ -34,3 +34,6 @@ out = NodePath("../PortalOut")
 [node name="PortalOut" parent="." instance=ExtResource("4_lwndt")]
 position = Vector2(400, 566)
 rotation = -1.5708
+
+[node name="Middle" type="Node2D" parent="."]
+position = Vector2(402, 390)

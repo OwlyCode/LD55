@@ -19,3 +19,6 @@ level_time = 8.0
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(417, 384)
+
+[node name="Middle" type="Node2D" parent="."]
+position = Vector2(417, 383)

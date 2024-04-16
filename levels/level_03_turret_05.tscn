@@ -26,3 +26,6 @@ position = Vector2(546, 390)
 position = Vector2(393, 390)
 cooldown = 0.3
 firemode = 2
+
+[node name="Middle" type="Node2D" parent="."]
+position = Vector2(389, 391)

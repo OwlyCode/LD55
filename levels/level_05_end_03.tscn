@@ -71,3 +71,6 @@ curve = SubResource("Curve2D_jbdew")
 position = Vector2(397, 260)
 scale = Vector2(0.648453, 0.422079)
 curve = SubResource("Curve2D_73vmu")
+
+[node name="Middle2" type="Node2D" parent="."]
+position = Vector2(451, 295)

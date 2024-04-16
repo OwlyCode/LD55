@@ -5,7 +5,7 @@ var Puffle = preload ("res://bullet_puffle.tscn")
 var speed = 100
 var iframe = 0.0
 
-var bounce_count = 1
+var bounce_count = 0
 
 func start(_position, _direction):
 	rotation = _direction

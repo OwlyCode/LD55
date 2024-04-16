@@ -31,3 +31,6 @@ bbcode_enabled = true
 text = "[center]Hurry up! Erase all the dark ritual symbols left by the cultists while you still can!
 
 Use [color=yellow]WASD[/color] / [color=yellow]left joystick[/color] to move[/center]"
+
+[node name="Middle" type="Node2D" parent="."]
+position = Vector2(417, 446)

@@ -24,6 +24,9 @@ func _ready():
 		instance.tilemap = self
 
 func _process(delta):
+	if won or lost:
+		return
+
 	var hero = get_node("/root/Game/Hero");
 
 	if !hero.alive:

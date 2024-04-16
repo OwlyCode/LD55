@@ -28,3 +28,6 @@ cooldown = 1.0
 [node name="Turret2" parent="." instance=ExtResource("3_43air")]
 position = Vector2(533, 402)
 cooldown = 1.0
+
+[node name="Middle" type="Node2D" parent="."]
+position = Vector2(432, 398)

@@ -29,3 +29,6 @@ out = NodePath("../PortalOut2")
 
 [node name="PortalOut2" parent="." instance=ExtResource("4_phvyj")]
 position = Vector2(392, 244)
+
+[node name="Middle" type="Node2D" parent="."]
+position = Vector2(392, 387)

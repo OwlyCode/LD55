@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://GameController.gd" id="1_5damq"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="2_wp75t"]
+[ext_resource type="PackedScene" uid="uid://bl7lwesqvqx61" path="res://game_music.tscn" id="3_377vo"]
 [ext_resource type="Script" path="res://TimeDisplay.gd" id="4_dm4ck"]
-[ext_resource type="Script" path="res://Music.gd" id="4_tcj87"]
 [ext_resource type="PackedScene" uid="uid://b4q3avdlmjiq4" path="res://assets/hero.tscn" id="5_4gm1s"]
 [ext_resource type="FontFile" uid="uid://6ovh0s5ogn73" path="res://assets/Unutterable-Regular.ttf" id="6_gg3qu"]
 [ext_resource type="Texture2D" uid="uid://c80foprenajuu" path="res://assets/victory.png" id="7_voa2x"]
@@ -241,15 +241,12 @@ gradient = SubResource("Gradient_pw8pf")
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5damq")
 
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_377vo")]
+
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 position = Vector2(424, 390)
 zoom = Vector2(1.2, 1.2)
 script = ExtResource("2_wp75t")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -11.409
-bus = &"Music"
-script = ExtResource("4_tcj87")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
@@ -531,11 +528,10 @@ rotation = 1.5708
 texture = SubResource("GradientTexture2D_30l41")
 
 [node name="Right" type="Sprite2D" parent="Visualizer"]
-position = Vector2(0, -20)
+position = Vector2(0, -8)
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_30l41")
 
-[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
 [connection signal="pressed" from="UI/Victory/VBoxContainer/HFlowContainer/VictoryButton" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="UI/Victory/VBoxContainer/HFlowContainer/ReplayButton" to="." method="_on_restart_level_pressed"]
 [connection signal="pressed" from="UI/Defeat/VBoxContainer/HFlowContainer/DefeatButton" to="." method="_on_restart_level_pressed"]

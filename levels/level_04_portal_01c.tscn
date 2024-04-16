@@ -38,3 +38,6 @@ out = NodePath("../PortalOut2")
 [node name="PortalIn2" parent="." node_paths=PackedStringArray("out") instance=ExtResource("3_tmvdf")]
 position = Vector2(556, 244)
 out = NodePath("../PortalOut")
+
+[node name="Middle" type="Node2D" parent="."]
+position = Vector2(392, 406)

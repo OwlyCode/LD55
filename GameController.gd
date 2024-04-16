@@ -66,7 +66,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
 	if current_level_instance != null:
 		var tilemap = current_level_instance.get_node("TileMap")
 
@@ -100,7 +99,7 @@ func _process(delta):
 			hero.position += camera.position - middle.position
 
 		hero.alive = true
-		hero.iframe = 10
+		hero.iframe = 30
 		hero.won = false
 		hero.visible = true
 		hero.freeze()
